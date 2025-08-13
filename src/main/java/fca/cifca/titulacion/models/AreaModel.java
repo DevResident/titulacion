@@ -10,17 +10,17 @@ public class AreaModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "area_id_area")
     private int area_id_area;
-    @Column(name = "area_id_operador", nullable = false, length = 4)
+    @Column(name = "area_id_operador", nullable = true, length = 4)
     private int area_id_operador;
     @Column(name = "area_id_persona")
     private int area_id_persona;
     @Column(name = "area_id_area_superior")
     private int area_id_area_superior;
-    @Column(name = "area_nombre", nullable = false, length = 150)
+    @Column(name = "area_nombre", nullable = true, length = 150)
     private String area_nombre;
-    @Column(name = "area_clave", nullable = false, length = 5)
+    @Column(name = "area_clave", nullable = true, length = 5)
     private String area_clave;
-    @Column(name = "area_abreviatura", nullable = false, length = 5)
+    @Column(name = "area_abreviatura", nullable = true, length = 5)
     private String area_abreviatura;
 
     public int getArea_id_area() {

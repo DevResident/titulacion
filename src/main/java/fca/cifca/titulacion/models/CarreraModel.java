@@ -10,11 +10,14 @@ public class CarreraModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "carr_id_carrera")
     private int carr_id_carrera;
-    @Column (name = "carr_nombre", nullable = false, length = 250)
+
+    @Column (name = "carr_nombre", nullable = true, length = 250)
     private String carr_nombre;
-    @Column (name = "carr_nombre_completo", nullable = false, length = 40)
+
+    @Column (name = "carr_nombre_completo", nullable = true, length = 40)
     private String carr_nombre_completo;
-    @Column (name = "carr_nombre_corto", nullable = false, length = 8)
+
+    @Column (name = "carr_nombre_corto", nullable = true, length = 8)
     private String carr_nombre_corto;
 
     public int getCarr_id_carrera() {

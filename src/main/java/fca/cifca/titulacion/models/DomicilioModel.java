@@ -11,19 +11,26 @@ public class DomicilioModel {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "domi_id_domicilio")
     private int domicilio_id_domicilio;
+
     @Column(name = "domi_calle", nullable = false)
     private String domicilio_calle;
+
     @Column(name = "domi_num_ext", nullable = true, length = 15)
     private String domicilio_num_ext;
+
     @Column(name = "domi_num_int", nullable = true, length = 15)
     private String domicilio_num_int;
-    @Column(name = "domi_tipo", nullable = false, length = 1)
+
+    @Column(name = "domi_tipo", nullable = true, length = 1)
     private String domicilio_tipo;
-    @Column(name = "domi_id_codigo_postal", nullable = false)
+
+    @Column(name = "domi_id_codigo_postal", nullable = true)
     private int domicilio_id_codigo_postal;
-    @Column(name = "domi_id_pais", nullable = false)
+
+    @Column(name = "domi_id_pais", nullable = true)
     private int domicilio_id_pais;
-    @Column(name = "domi_extranjero", nullable = false)
+
+    @Column(name = "domi_extranjero", nullable = true)
     private String domicilio_extranjero;
 
     public int getDomicilio_id_domicilio() {

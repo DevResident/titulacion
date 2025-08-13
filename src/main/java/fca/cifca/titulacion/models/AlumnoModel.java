@@ -10,22 +10,22 @@ public class AlumnoModel {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "alum_id_alumno")
     private int alum_id_alumno;
-    @Column (name = "alum_id_carrera_plantel", nullable = false)
+    @Column (name = "alum_id_carrera_plantel", nullable = true)
     private int alum_id_carrera_plantel;
-    @Column (name = "alum_id_plan_estudio", nullable = false)
+    @Column (name = "alum_id_plan_estudio", nullable = true)
     private int alum_id_plan_estudio;
-    @Column (name = "alum_generacion", nullable = false, length = 4)
+    @Column (name = "alum_generacion", nullable = true, length = 4)
     private String alum_generacion;
-    @Column (name = "alum_titulado", nullable = false, length = 1)
+    @Column (name = "alum_titulado", nullable = true, length = 1)
     private String alum_titulado;
-    @Column (name = "alum_sistema", nullable = false, length = 3)
+    @Column (name = "alum_sistema", nullable = true, length = 3)
     private String alum_sistema;
-    @Column (name = "alum_promedio", nullable = false)
+    @Column (name = "alum_promedio", nullable = true)
     private double alum_promedio;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn (name = "alum_id_persona", nullable = false)
+    @JoinColumn (name = "alum_id_persona", nullable = true)
     private int alum_id_persona;
-    @Column (name = "alum_no_cuenta", nullable = false, length = 15)
+    @Column (name = "alum_no_cuenta", nullable = true, length = 15)
     private String alum_no_cuenta;
     @Column (name = "alum_ingreso", nullable = true, length = 8)
     private String alum_ingreso;
