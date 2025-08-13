@@ -6,29 +6,40 @@ import jakarta.persistence.*;
 @Table (name = "alumno")
 
 public class AlumnoModel {
+
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "alum_id_alumno")
     private int alum_id_alumno;
+
     @Column (name = "alum_id_carrera_plantel", nullable = true)
     private int alum_id_carrera_plantel;
+
     @Column (name = "alum_id_plan_estudio", nullable = true)
     private int alum_id_plan_estudio;
+
     @Column (name = "alum_generacion", nullable = true, length = 4)
     private String alum_generacion;
+
     @Column (name = "alum_titulado", nullable = true, length = 1)
     private String alum_titulado;
+
     @Column (name = "alum_sistema", nullable = true, length = 3)
     private String alum_sistema;
+
     @Column (name = "alum_promedio", nullable = true)
     private double alum_promedio;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "alum_id_persona", nullable = true)
-    private int alum_id_persona;
+    private PersonaModel alum_id_persona;
+
     @Column (name = "alum_no_cuenta", nullable = true, length = 15)
     private String alum_no_cuenta;
+
     @Column (name = "alum_ingreso", nullable = true, length = 8)
     private String alum_ingreso;
+
     @Column (name = "alum_egreso", nullable = true, length = 8)
     private String alum_egreso;
 
@@ -88,11 +99,11 @@ public class AlumnoModel {
         this.alum_promedio = alum_promedio;
     }
 
-    public int getAlum_id_persona() {
+    public PersonaModel getAlum_id_persona() {
         return alum_id_persona;
     }
 
-    public void setAlum_id_persona(int alum_id_persona) {
+    public void setAlum_id_persona(PersonaModel alum_id_persona) {
         this.alum_id_persona = alum_id_persona;
     }
 
@@ -123,7 +134,12 @@ public class AlumnoModel {
     public AlumnoModel() {
     }
 
-    public AlumnoModel(int alum_id_alumno, int alum_id_carrera_plantel, int alum_id_plan_estudio, String alum_generacion, String alum_titulado, String alum_sistema, double alum_promedio, int alum_id_persona, String alum_no_cuenta, String alum_ingreso, String alum_egreso) {
+    public AlumnoModel(int alum_id_alumno, int alum_id_carrera_plantel,
+                       int alum_id_plan_estudio,
+                       String alum_generacion, String alum_titulado,
+                       String alum_sistema, double alum_promedio,
+                       PersonaModel alum_id_persona, String alum_no_cuenta,
+                       String alum_ingreso, String alum_egreso) {
         this.alum_id_alumno = alum_id_alumno;
         this.alum_id_carrera_plantel = alum_id_carrera_plantel;
         this.alum_id_plan_estudio = alum_id_plan_estudio;
