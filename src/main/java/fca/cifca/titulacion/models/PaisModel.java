@@ -12,9 +12,9 @@ public class PaisModel {
     private int pais_id_pais;
     @Column (name = "pais_nombre", length = 100, nullable = false)
     private String pais_nombre;
-    @Column (name = "pais_nacionalidad", length = 50, nullable = false)
+    @Column (name = "pais_nacionalidad", length = 50, nullable = true)
     private String pais_nacionalidad;
-    @Column (name = "pais_cve_lada", length = 8, nullable = false)
+    @Column (name = "pais_cve_lada", length = 8, nullable = true)
     private String pais_cve_lada;
 
     public int getPais_id_pais() {
