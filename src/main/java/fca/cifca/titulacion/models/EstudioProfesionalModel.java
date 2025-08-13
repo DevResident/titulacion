@@ -73,4 +73,5 @@ public class EstudioProfesionalModel {
         this.espr_abv1 = espr_abv1;
         this.espr_abv2 = espr_abv2;
     }
+
 }
