@@ -1,4 +1,4 @@
-package fca.cifca.titulacion.services;
+package fca.cifca.titulacion.repositories;
 
 import fca.cifca.titulacion.models.AlumnoModel;
 import org.springframework.data.jpa.repository.JpaRepository;
