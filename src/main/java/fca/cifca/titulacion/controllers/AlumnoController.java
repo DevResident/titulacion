@@ -19,4 +19,5 @@ public class AlumnoController {
     public AlumnoDTO buscarAlumno(@RequestParam String numeroCuenta, @RequestParam String curp) {
         return alumnoService.buscarAlumno(numeroCuenta, curp);
     }
+
 }

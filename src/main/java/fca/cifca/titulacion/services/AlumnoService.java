@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class AlumnoService implements IAlumnoService {
     @Override
     public AlumnoDTO buscarAlumno(String numeroCuenta, String curp) {
-        AlumnoDTO alumno = new AlumnoDTO("319253704", "Fernando", "Hurtado", "Bárcena", 'h', "Mexicana", "HUBF020824HDFFFAD3");
+        AlumnoDTO alumno = new AlumnoDTO("319253704", "Fernando", "Hurtado", "Bárcena", 'h', "Mexicana", "HUBF020824HDFRRRA3");
         return alumno;
     }
 
