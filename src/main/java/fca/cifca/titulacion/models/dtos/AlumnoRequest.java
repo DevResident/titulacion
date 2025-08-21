@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class AlumnoRequest {
+
     @NotBlank
     private String numeroCuenta;
     @NotNull
