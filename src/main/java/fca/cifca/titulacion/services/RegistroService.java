@@ -13,12 +13,11 @@ public class RegistroService implements IRegistroService {
     public RegistroDTO obtenerRegistro(String numCuenta){
 
         RegistroDTO registroDTO = new RegistroDTO("320247558", "Diego", "Ortega",
-                null, "FCA", "Informática", "Proyecto", new Date(), new Date());
+                null, "FCA", "Informática", "Proyecto",
+                new Date(), new Date());
 
         return registroDTO;
 
     }
-
-
 
 }

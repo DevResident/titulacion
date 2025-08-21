@@ -31,5 +31,6 @@ public class AlumnoController {
         AlumnoDTO alumnoPrueba = alumnoService.buscarAlumno(numeroCuenta, curp);
         String numCuenta = alumnoPrueba.getNumeroCuenta();
         return registroService.obtenerRegistro(numCuenta);
+
     }
 }
