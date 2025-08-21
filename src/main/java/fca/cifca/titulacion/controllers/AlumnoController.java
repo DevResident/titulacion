@@ -32,4 +32,5 @@ public class AlumnoController {
         String numCuenta = alumnoPrueba.getNumeroCuenta();
         return registroService.obtenerRegistro(numCuenta);
     }
+
 }
