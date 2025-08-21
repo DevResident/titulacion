@@ -9,86 +9,86 @@ public class AreaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "area_id_area")
-    private int area_id_area;
+    private int idArea;
     @Column(name = "area_id_operador", nullable = true, length = 4)
-    private int area_id_operador;
+    private int idOperador;
     @Column(name = "area_id_persona")
-    private int area_id_persona;
+    private int idPersona;
     @Column(name = "area_id_area_superior")
-    private int area_id_area_superior;
+    private int idAreaSuperior;
     @Column(name = "area_nombre", nullable = true, length = 150)
-    private String area_nombre;
+    private String nombreArea;
     @Column(name = "area_clave", nullable = true, length = 5)
-    private String area_clave;
+    private String claveArea;
     @Column(name = "area_abreviatura", nullable = true, length = 5)
-    private String area_abreviatura;
+    private String abreviaturaArea;
 
-    public int getArea_id_area() {
-        return area_id_area;
+    public int getIdArea() {
+        return idArea;
     }
 
-    public void setArea_id_area(int area_id_area) {
-        this.area_id_area = area_id_area;
+    public void setIdArea(int idArea) {
+        this.idArea = idArea;
     }
 
-    public int getArea_id_operador() {
-        return area_id_operador;
+    public int getIdOperador() {
+        return idOperador;
     }
 
-    public void setArea_id_operador(int area_id_operador) {
-        this.area_id_operador = area_id_operador;
+    public void setIdOperador(int idOperador) {
+        this.idOperador = idOperador;
     }
 
-    public int getArea_id_persona() {
-        return area_id_persona;
+    public int getIdPersona() {
+        return idPersona;
     }
 
-    public void setArea_id_persona(int area_id_persona) {
-        this.area_id_persona = area_id_persona;
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
     }
 
-    public int getArea_id_area_superior() {
-        return area_id_area_superior;
+    public int getIdAreaSuperior() {
+        return idAreaSuperior;
     }
 
-    public void setArea_id_area_superior(int area_id_area_superior) {
-        this.area_id_area_superior = area_id_area_superior;
+    public void setIdAreaSuperior(int idAreaSuperior) {
+        this.idAreaSuperior = idAreaSuperior;
     }
 
-    public String getArea_nombre() {
-        return area_nombre;
+    public String getNombreArea() {
+        return nombreArea;
     }
 
-    public void setArea_nombre(String area_nombre) {
-        this.area_nombre = area_nombre;
+    public void setNombreArea(String nombreArea) {
+        this.nombreArea = nombreArea;
     }
 
-    public String getArea_clave() {
-        return area_clave;
+    public String getClaveArea() {
+        return claveArea;
     }
 
-    public void setArea_clave(String area_clave) {
-        this.area_clave = area_clave;
+    public void setClaveArea(String claveArea) {
+        this.claveArea = claveArea;
     }
 
-    public String getArea_abreviatura() {
-        return area_abreviatura;
+    public String getAbreviaturaArea() {
+        return abreviaturaArea;
     }
 
-    public void setArea_abreviatura(String area_abreviatura) {
-        this.area_abreviatura = area_abreviatura;
+    public void setAbreviaturaArea(String abreviaturaArea) {
+        this.abreviaturaArea = abreviaturaArea;
     }
 
     public AreaModel() {
     }
 
-    public AreaModel(int area_id_area, int area_id_operador, int area_id_persona, int area_id_area_superior, String area_nombre, String area_clave, String area_abreviatura) {
-        this.area_id_area = area_id_area;
-        this.area_id_operador = area_id_operador;
-        this.area_id_persona = area_id_persona;
-        this.area_id_area_superior = area_id_area_superior;
-        this.area_nombre = area_nombre;
-        this.area_clave = area_clave;
-        this.area_abreviatura = area_abreviatura;
+    public AreaModel(int idArea, int idOperador, int idPersona, int idAreaSuperior, String nombreArea, String claveArea, String abreviaturaArea) {
+        this.idArea = idArea;
+        this.idOperador = idOperador;
+        this.idPersona = idPersona;
+        this.idAreaSuperior = idAreaSuperior;
+        this.nombreArea = nombreArea;
+        this.claveArea = claveArea;
+        this.abreviaturaArea = abreviaturaArea;
     }
 }

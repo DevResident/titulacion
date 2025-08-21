@@ -10,104 +10,105 @@ public class DomicilioModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "domi_id_domicilio")
-    private int domicilio_id_domicilio;
+    private int idDomicilio;
 
     @Column(name = "domi_calle", nullable = false)
-    private String domicilio_calle;
+    private String calle;
 
     @Column(name = "domi_num_ext", nullable = true, length = 15)
-    private String domicilio_num_ext;
+    private String numeroExterior;
 
     @Column(name = "domi_num_int", nullable = true, length = 15)
-    private String domicilio_num_int;
+    private String numeroInterior;
 
     @Column(name = "domi_tipo", nullable = true, length = 1)
-    private String domicilio_tipo;
+    private String tipoDomicilio;
 
     @Column(name = "domi_id_codigo_postal", nullable = true)
-    private int domicilio_id_codigo_postal;
+    private int idCodigoPostal;
 
-    @Column(name = "domi_id_pais", nullable = true)
-    private int domicilio_id_pais;
+    @ManyToOne (fetch = FetchType.EAGER)
+    @JoinColumn(name = "domi_id_pais", nullable = true)
+    private PaisModel pais;
 
     @Column(name = "domi_extranjero", nullable = true)
-    private String domicilio_extranjero;
+    private String esExtranjero;
 
-    public int getDomicilio_id_domicilio() {
-        return domicilio_id_domicilio;
+    public int getIdDomicilio() {
+        return idDomicilio;
     }
 
-    public void setDomicilio_id_domicilio(int domicilio_id_domicilio) {
-        this.domicilio_id_domicilio = domicilio_id_domicilio;
+    public void setIdDomicilio(int idDomicilio) {
+        this.idDomicilio = idDomicilio;
     }
 
-    public String getDomicilio_calle() {
-        return domicilio_calle;
+    public String getCalle() {
+        return calle;
     }
 
-    public void setDomicilio_calle(String domicilio_calle) {
-        this.domicilio_calle = domicilio_calle;
+    public void setCalle(String calle) {
+        this.calle = calle;
     }
 
-    public String getDomicilio_num_ext() {
-        return domicilio_num_ext;
+    public String getNumeroExterior() {
+        return numeroExterior;
     }
 
-    public void setDomicilio_num_ext(String domicilio_num_ext) {
-        this.domicilio_num_ext = domicilio_num_ext;
+    public void setNumeroExterior(String numeroExterior) {
+        this.numeroExterior = numeroExterior;
     }
 
-    public String getDomicilio_num_int() {
-        return domicilio_num_int;
+    public String getNumeroInterior() {
+        return numeroInterior;
     }
 
-    public void setDomicilio_num_int(String domicilio_num_int) {
-        this.domicilio_num_int = domicilio_num_int;
+    public void setNumeroInterior(String numeroInterior) {
+        this.numeroInterior = numeroInterior;
     }
 
-    public String getDomicilio_tipo() {
-        return domicilio_tipo;
+    public String getTipoDomicilio() {
+        return tipoDomicilio;
     }
 
-    public void setDomicilio_tipo(String domicilio_tipo) {
-        this.domicilio_tipo = domicilio_tipo;
+    public void setTipoDomicilio(String tipoDomicilio) {
+        this.tipoDomicilio = tipoDomicilio;
     }
 
-    public int getDomicilio_id_codigo_postal() {
-        return domicilio_id_codigo_postal;
+    public int getIdCodigoPostal() {
+        return idCodigoPostal;
     }
 
-    public void setDomicilio_id_codigo_postal(int domicilio_id_codigo_postal) {
-        this.domicilio_id_codigo_postal = domicilio_id_codigo_postal;
+    public void setIdCodigoPostal(int idCodigoPostal) {
+        this.idCodigoPostal = idCodigoPostal;
     }
 
-    public int getDomicilio_id_pais() {
-        return domicilio_id_pais;
+    public PaisModel getPais() {
+        return pais;
     }
 
-    public void setDomicilio_id_pais(int domicilio_id_pais) {
-        this.domicilio_id_pais = domicilio_id_pais;
+    public void setPais(PaisModel pais) {
+        this.pais = pais;
     }
 
-    public String getDomicilio_extranjero() {
-        return domicilio_extranjero;
+    public String getEsExtranjero() {
+        return esExtranjero;
     }
 
-    public void setDomicilio_extranjero(String domicilio_extranjero) {
-        this.domicilio_extranjero = domicilio_extranjero;
+    public void setEsExtranjero(String esExtranjero) {
+        this.esExtranjero = esExtranjero;
     }
 
     public DomicilioModel() {
     }
 
-    public DomicilioModel(int domicilio_id_domicilio, String domicilio_calle, String domicilio_num_ext, String domicilio_num_int, String domicilio_tipo, int domicilio_id_codigo_postal, int domicilio_id_pais, String domicilio_extranjero) {
-        this.domicilio_id_domicilio = domicilio_id_domicilio;
-        this.domicilio_calle = domicilio_calle;
-        this.domicilio_num_ext = domicilio_num_ext;
-        this.domicilio_num_int = domicilio_num_int;
-        this.domicilio_tipo = domicilio_tipo;
-        this.domicilio_id_codigo_postal = domicilio_id_codigo_postal;
-        this.domicilio_id_pais = domicilio_id_pais;
-        this.domicilio_extranjero = domicilio_extranjero;
+    public DomicilioModel(int idDomicilio, String calle, String numeroExterior, String numeroInterior, String tipoDomicilio, int idCodigoPostal, PaisModel pais, String esExtranjero) {
+        this.idDomicilio = idDomicilio;
+        this.calle = calle;
+        this.numeroExterior = numeroExterior;
+        this.numeroInterior = numeroInterior;
+        this.tipoDomicilio = tipoDomicilio;
+        this.idCodigoPostal = idCodigoPostal;
+        this.pais = pais;
+        this.esExtranjero = esExtranjero;
     }
 }

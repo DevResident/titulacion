@@ -9,56 +9,56 @@ public class CarreraModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "carr_id_carrera")
-    private int carr_id_carrera;
+    private int idCarrera;
 
     @Column (name = "carr_nombre", nullable = true, length = 250)
-    private String carr_nombre;
+    private String nombreCarrera;
 
     @Column (name = "carr_nombre_completo", nullable = true, length = 40)
-    private String carr_nombre_completo;
+    private String nombreCompleto;
 
     @Column (name = "carr_nombre_corto", nullable = true, length = 8)
-    private String carr_nombre_corto;
+    private String nombreCorto;
 
-    public int getCarr_id_carrera() {
-        return carr_id_carrera;
+    public int getIdCarrera() {
+        return idCarrera;
     }
 
-    public void setCarr_id_carrera(int carr_id_carrera) {
-        this.carr_id_carrera = carr_id_carrera;
+    public void setIdCarrera(int idCarrera) {
+        this.idCarrera = idCarrera;
     }
 
-    public String getCarr_nombre() {
-        return carr_nombre;
+    public String getNombreCarrera() {
+        return nombreCarrera;
     }
 
-    public void setCarr_nombre(String carr_nombre) {
-        this.carr_nombre = carr_nombre;
+    public void setNombreCarrera(String nombreCarrera) {
+        this.nombreCarrera = nombreCarrera;
     }
 
-    public String getCarr_nombre_completo() {
-        return carr_nombre_completo;
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
-    public void setCarr_nombre_completo(String carr_nombre_completo) {
-        this.carr_nombre_completo = carr_nombre_completo;
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
-    public String getCarr_nombre_corto() {
-        return carr_nombre_corto;
+    public String getNombreCorto() {
+        return nombreCorto;
     }
 
-    public void setCarr_nombre_corto(String carr_nombre_corto) {
-        this.carr_nombre_corto = carr_nombre_corto;
+    public void setNombreCorto(String nombreCorto) {
+        this.nombreCorto = nombreCorto;
     }
 
     public CarreraModel() {
     }
 
-    public CarreraModel(int carr_id_carrera, String carr_nombre, String carr_nombre_completo, String carr_nombre_corto) {
-        this.carr_id_carrera = carr_id_carrera;
-        this.carr_nombre = carr_nombre;
-        this.carr_nombre_completo = carr_nombre_completo;
-        this.carr_nombre_corto = carr_nombre_corto;
+    public CarreraModel(int idCarrera, String nombreCarrera, String nombreCompleto, String nombreCorto) {
+        this.idCarrera = idCarrera;
+        this.nombreCarrera = nombreCarrera;
+        this.nombreCompleto = nombreCompleto;
+        this.nombreCorto = nombreCorto;
     }
 }

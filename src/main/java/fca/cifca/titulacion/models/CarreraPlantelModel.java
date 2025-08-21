@@ -9,42 +9,46 @@ public class CarreraPlantelModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "capa_id_carrera_plantel")
-    private int capa_id_carrera_plantel;
-    @Column (name = "capa_id_carrera", nullable = false)
-    private int capa_id_carrera;
-    @Column (name = "capa_id_institucion", nullable = false)
-    private int capa_id_institucion;
+    private int idCarreraPlantel;
 
-    public int getCapa_id_carrera_plantel() {
-        return capa_id_carrera_plantel;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn (name = "capa_id_carrera", nullable = false)
+    private CarreraModel carrera;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn (name = "capa_id_institucion", nullable = false)
+    private InstitucionModel institucion;
+
+    public int getIdCarreraPlantel() {
+        return idCarreraPlantel;
     }
 
-    public void setCapa_id_carrera_plantel(int capa_id_carrera_plantel) {
-        this.capa_id_carrera_plantel = capa_id_carrera_plantel;
+    public void setIdCarreraPlantel(int idCarreraPlantel) {
+        this.idCarreraPlantel = idCarreraPlantel;
     }
 
-    public int getCapa_id_carrera() {
-        return capa_id_carrera;
+    public CarreraModel getCarrera() {
+        return carrera;
     }
 
-    public void setCapa_id_carrera(int capa_id_carrera) {
-        this.capa_id_carrera = capa_id_carrera;
+    public void setCarrera(CarreraModel carrera) {
+        this.carrera = carrera;
     }
 
-    public int getCapa_id_institucion() {
-        return capa_id_institucion;
+    public InstitucionModel getInstitucion() {
+        return institucion;
     }
 
-    public void setCapa_id_institucion(int capa_id_institucion) {
-        this.capa_id_institucion = capa_id_institucion;
+    public void setInstitucion(InstitucionModel institucion) {
+        this.institucion = institucion;
     }
 
     public CarreraPlantelModel() {
     }
 
-    public CarreraPlantelModel(int capa_id_carrera_plantel, int capa_id_carrera, int capa_id_institucion) {
-        this.capa_id_carrera_plantel = capa_id_carrera_plantel;
-        this.capa_id_carrera = capa_id_carrera;
-        this.capa_id_institucion = capa_id_institucion;
+    public CarreraPlantelModel(int idCarreraPlantel, CarreraModel carrera, InstitucionModel institucion) {
+        this.idCarreraPlantel = idCarreraPlantel;
+        this.carrera = carrera;
+        this.institucion = institucion;
     }
 }
