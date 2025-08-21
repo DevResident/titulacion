@@ -32,7 +32,7 @@ public class AlumnoController {
                 alumnoRequest.getNumeroCuenta(),
                 alumnoRequest.getCurp()
         );
-        return registroService.obtenerRegistro(alumnoPrueba.getNumeroCuenta());
+        return registroService.obtenerRegistro(alumnoPrueba.getNumeroCuenta(), alumnoPrueba.getCurp());
 
     }
 

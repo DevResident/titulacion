@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface IRegistroService {
-    RegistroDTO obtenerRegistro(String numCuenta);
+    RegistroDTO obtenerRegistro(String numCuenta, String curp);
 }
