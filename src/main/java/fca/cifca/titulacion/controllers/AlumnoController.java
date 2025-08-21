@@ -25,12 +25,14 @@ public class AlumnoController {
         return alumnoService.buscarAlumno(numeroCuenta, curp);
     }
 
-    @GetMapping("/registro")
-    public RegistroDTO obtenerRegistro(@RequestParam String numeroCuenta, @RequestParam String curp) {
+    @PostMapping("/registro")
+    public RegistroDTO obtenerRegistro(@RequestBody AlumnoRequest alumnoRequest) {
 
-        AlumnoDTO alumnoPrueba = alumnoService.buscarAlumno(numeroCuenta, curp);
-        String numCuenta = alumnoPrueba.getNumeroCuenta();
-        return registroService.obtenerRegistro(numCuenta);
+        AlumnoDTO alumnoPrueba = alumnoService.buscarAlumno(
+                alumnoRequest.getNumeroCuenta(),
+                alumnoRequest.getCurp()
+        );
+        return registroService.obtenerRegistro(alumnoPrueba.getNumeroCuenta());
 
     }
 }
