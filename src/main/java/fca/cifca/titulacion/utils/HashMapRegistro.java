@@ -2,6 +2,7 @@ package fca.cifca.titulacion.utils;
 
 import fca.cifca.titulacion.models.dtos.RegistroDTO;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,9 +22,13 @@ public class HashMapRegistro {
     public HashMapRegistro() {
 
         registros.put("320247558", new RegistroDTO("320247558", "Diego", "Ortega",
-                null, "FCA", "Informática", "Proyecto", new Date(), new Date()));
+                null, "UNAM", "FCA", "Informática",
+                "Proyecto", "Presencial(?)", LocalDate.now(), LocalDate.now()));
+
         registros.put("319253704", new RegistroDTO("319253704", "Fernando", "Hurtado",
-                "Bárcena", "FCA", "Derecho", "Tesis", new Date(), new Date()));
+                "Bárcena",
+                "UNAM", "FCA", "Informática",
+                "Proyecto", "Presencial(?)", LocalDate.now(), LocalDate.now()));
 
     }
 
