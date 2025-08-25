@@ -14,8 +14,9 @@ public class AlumnoService implements IAlumnoService {
 
     private String error;
 
+    //Pemrite que termine en dos números (05) o en caracter-número (A6).
     private static final String REGEX_CURP =
-            "^[A-Z]{4}\\d{6}[HM][A-Z]{2}[A-Z]{3}[A-Z0-9]{2}$";
+            "^[A-Z]{4}\\d{6}[HM][A-Z]{2}[A-Z]{3}(?:[A-Z]\\d|\\d\\d)$";
 
     @Override
     public AlumnoDTO buscarAlumno(String numeroCuenta, String curp) {

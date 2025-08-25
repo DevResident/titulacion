@@ -16,8 +16,10 @@ public class HashMapRegistro {
     }
 
     public void setRegistros(Map<String, RegistroDTO> registros) {
+
         this.registros = registros;
     }
+
 
     public HashMapRegistro() {
 
@@ -29,6 +31,11 @@ public class HashMapRegistro {
                 "Bárcena",
                 "UNAM", "FCA", "Informática",
                 "Proyecto", "Presencial(?)", LocalDate.now(), LocalDate.now()));
+
+        registros.put("320240834", new RegistroDTO("320240834", "Prueba", "De captura",
+                "De CURP con dos dígitos", "UNAM", "FCA",
+                "Administración", "Diplomado", "A distancia",
+                LocalDate.now(), LocalDate.now()));
 
     }
 
