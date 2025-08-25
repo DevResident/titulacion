@@ -4,8 +4,6 @@ import fca.cifca.titulacion.models.dtos.AlumnoDTO;
 import fca.cifca.titulacion.models.dtos.AlumnoRequest;
 import fca.cifca.titulacion.models.dtos.RegistroDTO;
 import fca.cifca.titulacion.services.AlumnoService;
-import fca.cifca.titulacion.services.RegistroService;
-import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,26 +11,22 @@ import org.springframework.web.bind.annotation.*;
 public class AlumnoController {
 
     private final AlumnoService alumnoService;
-    private final RegistroService registroService;
 
-    public AlumnoController(AlumnoService alumnoService, RegistroService registroService) {
+    public AlumnoController(AlumnoService alumnoService) {
 
         this.alumnoService = alumnoService;
-        this.registroService = registroService;
     }
     @GetMapping
-    public AlumnoDTO buscarAlumno(@RequestParam String numeroCuenta, @RequestParam String curp) {
-        return alumnoService.buscarAlumno(numeroCuenta, curp);
+    //public AlumnoDTO buscarAlumno(@RequestParam String numeroCuenta, @RequestParam String curp) {
+    public AlumnoDTO buscarAlumno(@RequestBody AlumnoRequest alumnoRequest) {
+        //return alumnoService.buscarAlumno(numeroCuenta, curp);
+        return alumnoService.buscarAlumno(alumnoRequest.getNumeroCuenta(), alumnoRequest.getCurp());
     }
 
     @PostMapping("/registro")
     public RegistroDTO obtenerRegistro(@RequestBody AlumnoRequest alumnoRequest) {
 
-        AlumnoDTO alumnoPrueba = alumnoService.buscarAlumno(
-                alumnoRequest.getNumeroCuenta(),
-                alumnoRequest.getCurp()
-        );
-        return registroService.obtenerRegistro(alumnoPrueba.getNumeroCuenta(), alumnoPrueba.getCurp());
+        return alumnoService.obtenerRegistro(alumnoRequest);
 
     }
 
