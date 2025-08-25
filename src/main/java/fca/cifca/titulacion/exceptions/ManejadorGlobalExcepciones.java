@@ -23,4 +23,11 @@ public class ManejadorGlobalExcepciones {
 
     }
 
+    @ExceptionHandler(NumeroCuentaInvalidoException.class)
+    public ResponseEntity<RespuestaError> handleNumeroCuentaInvalido(NumeroCuentaInvalidoException ex) {
+
+        return ResponseEntity.badRequest().body( new RespuestaError(ex.getMessage()) );
+
+    }
+
 }
