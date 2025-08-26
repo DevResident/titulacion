@@ -1,10 +1,15 @@
 package fca.cifca.titulacion.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table (name = "grado")
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class GradoModel {
 
     @Id
@@ -19,36 +24,5 @@ public class GradoModel {
     @Column (name = "grad_nombre",  nullable = false, length = 150)
     private String nombre;
 
-    public int getIdGrado() {
-        return idGrado;
-    }
 
-    public void setIdGrado(int idGrado) {
-        this.idGrado = idGrado;
-    }
-
-    public NivelGradoModel getNivelGrado() {
-        return nivelGrado;
-    }
-
-    public void setNivelGrado(NivelGradoModel nivelGrado) {
-        this.nivelGrado = nivelGrado;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public GradoModel() {
-    }
-
-    public GradoModel(int idGrado, NivelGradoModel nivelGrado, String nombre) {
-        this.idGrado = idGrado;
-        this.nivelGrado = nivelGrado;
-        this.nombre = nombre;
-    }
 }

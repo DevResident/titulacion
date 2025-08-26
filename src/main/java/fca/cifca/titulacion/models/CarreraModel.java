@@ -1,10 +1,15 @@
 package fca.cifca.titulacion.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table (name = "carrera")
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CarreraModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,45 +25,4 @@ public class CarreraModel {
     @Column (name = "carr_nombre_corto", nullable = true, length = 8)
     private String nombreCorto;
 
-    public int getIdCarrera() {
-        return idCarrera;
-    }
-
-    public void setIdCarrera(int idCarrera) {
-        this.idCarrera = idCarrera;
-    }
-
-    public String getNombreCarrera() {
-        return nombreCarrera;
-    }
-
-    public void setNombreCarrera(String nombreCarrera) {
-        this.nombreCarrera = nombreCarrera;
-    }
-
-    public String getNombreCompleto() {
-        return nombreCompleto;
-    }
-
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
-    }
-
-    public String getNombreCorto() {
-        return nombreCorto;
-    }
-
-    public void setNombreCorto(String nombreCorto) {
-        this.nombreCorto = nombreCorto;
-    }
-
-    public CarreraModel() {
-    }
-
-    public CarreraModel(int idCarrera, String nombreCarrera, String nombreCompleto, String nombreCorto) {
-        this.idCarrera = idCarrera;
-        this.nombreCarrera = nombreCarrera;
-        this.nombreCompleto = nombreCompleto;
-        this.nombreCorto = nombreCorto;
-    }
 }

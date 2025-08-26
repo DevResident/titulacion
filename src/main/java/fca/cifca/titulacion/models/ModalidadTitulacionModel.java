@@ -1,10 +1,15 @@
 package fca.cifca.titulacion.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table (name = "modalidad_titulacion")
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ModalidadTitulacionModel {
 
     @Id
@@ -22,45 +27,4 @@ public class ModalidadTitulacionModel {
     @Column (name = "moti_estado", nullable = true, length = 1)
     private String estado;
 
-    public int getIdModalidadTitulacion() {
-        return idModalidadTitulacion;
-    }
-
-    public void setIdModalidadTitulacion(int idModalidadTitulacion) {
-        this.idModalidadTitulacion = idModalidadTitulacion;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public CoordinacionModel getCoor_id_coordinacion() {
-        return coor_id_coordinacion;
-    }
-
-    public void setCoor_id_coordinacion(CoordinacionModel coor_id_coordinacion) {
-        this.coor_id_coordinacion = coor_id_coordinacion;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public ModalidadTitulacionModel() {
-    }
-
-    public ModalidadTitulacionModel(int idModalidadTitulacion, String nombre, CoordinacionModel coor_id_coordinacion, String estado) {
-        this.idModalidadTitulacion = idModalidadTitulacion;
-        this.nombre = nombre;
-        this.coor_id_coordinacion = coor_id_coordinacion;
-        this.estado = estado;
-    }
 }

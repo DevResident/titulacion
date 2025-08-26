@@ -1,10 +1,15 @@
 package fca.cifca.titulacion.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table (name = "carrera_plantel")
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CarreraPlantelModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -19,36 +24,4 @@ public class CarreraPlantelModel {
     @JoinColumn (name = "capa_id_institucion", nullable = false)
     private InstitucionModel institucion;
 
-    public int getIdCarreraPlantel() {
-        return idCarreraPlantel;
-    }
-
-    public void setIdCarreraPlantel(int idCarreraPlantel) {
-        this.idCarreraPlantel = idCarreraPlantel;
-    }
-
-    public CarreraModel getCarrera() {
-        return carrera;
-    }
-
-    public void setCarrera(CarreraModel carrera) {
-        this.carrera = carrera;
-    }
-
-    public InstitucionModel getInstitucion() {
-        return institucion;
-    }
-
-    public void setInstitucion(InstitucionModel institucion) {
-        this.institucion = institucion;
-    }
-
-    public CarreraPlantelModel() {
-    }
-
-    public CarreraPlantelModel(int idCarreraPlantel, CarreraModel carrera, InstitucionModel institucion) {
-        this.idCarreraPlantel = idCarreraPlantel;
-        this.carrera = carrera;
-        this.institucion = institucion;
-    }
 }

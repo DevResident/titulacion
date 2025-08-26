@@ -1,8 +1,13 @@
 package fca.cifca.titulacion.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-//Implementación por definir aún.
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "inscripcion_alumno_ot")
 public class RegistroModel {
 

@@ -1,10 +1,15 @@
 package fca.cifca.titulacion.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table (name = "division")
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class DivisionModel {
 
     @Id
@@ -15,27 +20,4 @@ public class DivisionModel {
     @Column (name = "divi_nombre", nullable = false, length = 100)
     private String nombreDivision;
 
-    public int getIdDivision() {
-        return idDivision;
-    }
-
-    public void setIdDivision(int idDivision) {
-        this.idDivision = idDivision;
-    }
-
-    public String getNombreDivision() {
-        return nombreDivision;
-    }
-
-    public void setNombreDivision(String nombreDivision) {
-        this.nombreDivision = nombreDivision;
-    }
-
-    public DivisionModel() {
-    }
-
-    public DivisionModel(int idDivision, String nombreDivision) {
-        this.idDivision = idDivision;
-        this.nombreDivision = nombreDivision;
-    }
 }

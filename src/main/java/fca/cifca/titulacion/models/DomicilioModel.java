@@ -1,11 +1,16 @@
 package fca.cifca.titulacion.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.w3c.dom.Text;
 
 @Entity
 @Table (name = "domicilio")
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class DomicilioModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -34,81 +39,4 @@ public class DomicilioModel {
     @Column(name = "domi_extranjero", nullable = true)
     private String esExtranjero;
 
-    public int getIdDomicilio() {
-        return idDomicilio;
-    }
-
-    public void setIdDomicilio(int idDomicilio) {
-        this.idDomicilio = idDomicilio;
-    }
-
-    public String getCalle() {
-        return calle;
-    }
-
-    public void setCalle(String calle) {
-        this.calle = calle;
-    }
-
-    public String getNumeroExterior() {
-        return numeroExterior;
-    }
-
-    public void setNumeroExterior(String numeroExterior) {
-        this.numeroExterior = numeroExterior;
-    }
-
-    public String getNumeroInterior() {
-        return numeroInterior;
-    }
-
-    public void setNumeroInterior(String numeroInterior) {
-        this.numeroInterior = numeroInterior;
-    }
-
-    public String getTipoDomicilio() {
-        return tipoDomicilio;
-    }
-
-    public void setTipoDomicilio(String tipoDomicilio) {
-        this.tipoDomicilio = tipoDomicilio;
-    }
-
-    public int getIdCodigoPostal() {
-        return idCodigoPostal;
-    }
-
-    public void setIdCodigoPostal(int idCodigoPostal) {
-        this.idCodigoPostal = idCodigoPostal;
-    }
-
-    public PaisModel getPais() {
-        return pais;
-    }
-
-    public void setPais(PaisModel pais) {
-        this.pais = pais;
-    }
-
-    public String getEsExtranjero() {
-        return esExtranjero;
-    }
-
-    public void setEsExtranjero(String esExtranjero) {
-        this.esExtranjero = esExtranjero;
-    }
-
-    public DomicilioModel() {
-    }
-
-    public DomicilioModel(int idDomicilio, String calle, String numeroExterior, String numeroInterior, String tipoDomicilio, int idCodigoPostal, PaisModel pais, String esExtranjero) {
-        this.idDomicilio = idDomicilio;
-        this.calle = calle;
-        this.numeroExterior = numeroExterior;
-        this.numeroInterior = numeroInterior;
-        this.tipoDomicilio = tipoDomicilio;
-        this.idCodigoPostal = idCodigoPostal;
-        this.pais = pais;
-        this.esExtranjero = esExtranjero;
-    }
 }
