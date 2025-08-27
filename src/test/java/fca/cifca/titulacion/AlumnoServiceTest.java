@@ -42,7 +42,7 @@ public class AlumnoServiceTest {
     }
 
     @Test
-    void obtenerRegistro_NumeroCuentaNoExiste_LanzaExcepcion() {
+    void obtenerRegistro_NumeroCuentaNoExiste_RetornaNulo() {
         assertNull(alumnoService.obtenerRegistro(
                 new AlumnoRequest("202312345", "PEPE010101HDFRRN01"))
         );
