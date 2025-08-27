@@ -16,7 +16,8 @@ public class AlumnoController {
 
         this.alumnoService = alumnoService;
     }
-    @GetMapping
+
+    @PostMapping("/buscar")
     //public AlumnoDTO buscarAlumno(@RequestParam String numeroCuenta, @RequestParam String curp) {
     public AlumnoDTO buscarAlumno(@RequestBody AlumnoRequest alumnoRequest) {
         //return alumnoService.buscarAlumno(numeroCuenta, curp);
