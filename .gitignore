@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### Archivo de propiedades
-*.properties
+/src/main/resources/application.properties
