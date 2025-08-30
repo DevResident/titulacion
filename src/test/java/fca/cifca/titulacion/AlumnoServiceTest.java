@@ -3,7 +3,6 @@ package fca.cifca.titulacion;
 import fca.cifca.titulacion.exceptions.AlumnoNoEncontradoException;
 import fca.cifca.titulacion.exceptions.CurpInvalidaException;
 import fca.cifca.titulacion.exceptions.NumeroCuentaInvalidoException;
-import fca.cifca.titulacion.models.dtos.AlumnoDTO;
 import fca.cifca.titulacion.models.dtos.AlumnoRequest;
 import fca.cifca.titulacion.services.AlumnoService;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AlumnoServiceTest {
 
-    //Servicio que queremos probar unitariamente.
     private AlumnoService alumnoService;
 
     @BeforeEach

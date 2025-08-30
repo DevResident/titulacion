@@ -6,6 +6,7 @@ import fca.cifca.titulacion.models.dtos.AlumnoDTO;
 import fca.cifca.titulacion.models.dtos.AlumnoRequest;
 import fca.cifca.titulacion.models.dtos.RegistroDTO;
 import fca.cifca.titulacion.services.AlumnoService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDate;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -32,12 +32,15 @@ public class AlumnoControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @BeforeEach
+    void setUp() {
+        //Solo sé que este método va siempre aunque esté pelón
+    }
 
     @Test
     @DisplayName("Debe devolver AlumnoDTO al buscar alumno")
     void testBuscarAlumno() throws Exception {
-        // Arrange
-        AlumnoRequest request = new AlumnoRequest("123456789", "CURP123");
+        AlumnoRequest request = new AlumnoRequest("123456789", "CURP123456");
         AlumnoDTO mockResponse = new AlumnoDTO(
                 "123456789",
                 "Diego",
@@ -45,13 +48,13 @@ public class AlumnoControllerTest {
                 "Ortega",
                 'M',
                 "Mexicana",
-                "CURP123"
+                "CURP123456"
         );
 
-        when(alumnoService.buscarAlumno(eq("123456789"), eq("CURP123")))
+        //Fingiremos que esto es un servicio real. Todo en la vida es mentira a fin de cuentas.
+        when(alumnoService.buscarAlumno(eq("123456789"), eq("CURP123456")))
                 .thenReturn(mockResponse);
 
-        // Act & Assert
         mockMvc.perform(post("/alumno/buscar")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
@@ -60,14 +63,13 @@ public class AlumnoControllerTest {
                 .andExpect(jsonPath("$.nombre").value("Diego"))
                 .andExpect(jsonPath("$.primerApellido").value("Damiel"))
                 .andExpect(jsonPath("$.segundoApellido").value("Ortega"))
-                .andExpect(jsonPath("$.curp").value("CURP123"));
+                .andExpect(jsonPath("$.curp").value("CURP123456"));
     }
 
     @Test
     @DisplayName("Debe devolver RegistroDTO al obtener registro")
     void testObtenerRegistro() throws Exception {
-        // Arrange
-        AlumnoRequest request = new AlumnoRequest("987654321", "CURP987");
+        AlumnoRequest request = new AlumnoRequest("987654321", "CURP987654");
         RegistroDTO mockResponse = new RegistroDTO(
                 "987654321",
                 "Ana",
@@ -82,10 +84,8 @@ public class AlumnoControllerTest {
                 LocalDate.of(2025, 2, 20)
         );
 
-        when(alumnoService.obtenerRegistro(any(AlumnoRequest.class)))
-                .thenReturn(mockResponse);
+        when(alumnoService.obtenerRegistro(request)).thenReturn(mockResponse);
 
-        // Act & Assert
         mockMvc.perform(post("/alumno/registro")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
@@ -99,4 +99,5 @@ public class AlumnoControllerTest {
                 .andExpect(jsonPath("$.fechaRegistro").value("2025-01-10"))
                 .andExpect(jsonPath("$.fechaAplicacion").value("2025-02-20"));
     }
+
 }
