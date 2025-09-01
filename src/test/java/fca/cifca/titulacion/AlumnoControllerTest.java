@@ -46,7 +46,7 @@ public class AlumnoControllerTest {
                 "Diego",
                 "Damiel",
                 "Ortega",
-                'M',
+                "M",
                 "Mexicana",
                 "CURP123456"
         );

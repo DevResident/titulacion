@@ -19,9 +19,9 @@ public class HashMapAlumno {
 
     public HashMapAlumno() {
 
-        alumnos.put("320247558", new AlumnoDTO("320247558", "Diego", "Ortega", null, 'h', "Mexicana", "OEMD040810HDFRLGA6"));
-        alumnos.put("319253704", new AlumnoDTO("319253704", "Fernando", "Hurtado", "Bárcena", 'h', "Mexicana", "HUBF020824HDFRRRA3"));
-        alumnos.put("320240834", new AlumnoDTO("320240834", "Prueba", "De captura", "De CURP con dos dígitos", 'h', "Mexicana", "AAAA100921MDFRLG22"));
+        alumnos.put("320247558", new AlumnoDTO("320247558", "Diego", "Ortega", null, "h", "Mexicana", "OEMD040810HDFRLGA6"));
+        alumnos.put("319253704", new AlumnoDTO("319253704", "Fernando", "Hurtado", "Bárcena", "h", "Mexicana", "HUBF020824HDFRRRA3"));
+        alumnos.put("320240834", new AlumnoDTO("320240834", "Prueba", "De captura", "De CURP con dos dígitos", "h", "Mexicana", "AAAA100921MDFRLG22"));
 
     }
 
