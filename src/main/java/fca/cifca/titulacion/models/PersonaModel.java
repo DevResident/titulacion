@@ -58,8 +58,10 @@ public class PersonaModel {
     @Column(name = "pers_es_temporal", length = 2, nullable = true)
     private String pers_es_temporal;
 
-    @Column(name = "pers_id_pais", nullable = true)
-    private int pers_id_pais;
+    // Relación con país
+    @ManyToOne(fetch = FetchType.LAZY) // LAZY para que no cargue siempre el país
+    @JoinColumn(name = "pers_id_pais", referencedColumnName = "pais_id_pais", nullable = false)
+    private PaisModel pers_id_pais;
 
     @Column(name = "pers_fec_nac", nullable = true)
     private Date pers_fec_nac;
