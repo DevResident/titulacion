@@ -40,22 +40,21 @@ public class RegistroModel {
     @Column(name = "iaot_estatus")
     private String estatus;
 
-    @Column(name = "iaot_id_asesor")
-    private int idAsesor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "iaot_id_convocatoria_titulacion")
     private ConvocatoriaTitulacionModel convocatoriaTitulacion;
 
     @Column(name = "iaot_fecha_tesis")
-    private LocalDateTime fechaTesis;
+    private LocalDate fechaTesis;
 
     @Column(name = "iaot_fecha_inicio")
-    private LocalDateTime fechaInicio;
+    private LocalDate fechaInicio;
 
     @Column(name = "iaot_fecha_fin")
-    private LocalDateTime fechaFin;
+    private LocalDate fechaFin;
 
+    //Según la consulta, esto es nulo, no hay registros con ese campo diferente a nul
     @Column(name = "iaot_nombre")
     private String nombre;
 
@@ -64,9 +63,6 @@ public class RegistroModel {
 
     @Column(name = "iaot_semestre_fin", length = 7)
     private String semestreFin;
-
-    @Column(name = "iaot_recursamiento")
-    private boolean recursamiento;
 
     @Column(name = "iaot_es_opcion_titulacion")
     private boolean esOpcionTitulacion;

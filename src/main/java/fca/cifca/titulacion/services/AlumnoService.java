@@ -3,6 +3,7 @@ package fca.cifca.titulacion.services;
 import fca.cifca.titulacion.exceptions.AlumnoNoEncontradoException;
 import fca.cifca.titulacion.exceptions.CurpInvalidaException;
 import fca.cifca.titulacion.exceptions.NumeroCuentaInvalidoException;
+import fca.cifca.titulacion.models.RegistroModel;
 import fca.cifca.titulacion.models.dtos.AlumnoDTO;
 import fca.cifca.titulacion.models.dtos.AlumnoRequest;
 import fca.cifca.titulacion.models.dtos.RegistroDTO;
@@ -61,6 +62,13 @@ public class AlumnoService implements IAlumnoService {
     public RegistroDTO obtenerRegistro(AlumnoRequest alumnoRequest) {
 
         return registros.getRegistros().getOrDefault(alumnoRequest.getNumeroCuenta(), null);
+
+    }
+
+    @Override
+    public RegistroModel registrarAlumno(RegistroDTO registro){
+
+        return null;
 
     }
 

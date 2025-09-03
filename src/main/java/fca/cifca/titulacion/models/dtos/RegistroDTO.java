@@ -1,5 +1,6 @@
 package fca.cifca.titulacion.models.dtos;
 
+import fca.cifca.titulacion.models.RegistroModel;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -44,5 +45,25 @@ public class RegistroDTO {
 
     @NotNull
     private LocalDate fechaAplicacion;
+
+    //Constructor a base del modelo.
+    public RegistroDTO(RegistroModel registro) {
+
+        this.numeroCuenta = registro.getAlumno().getNumeroCuenta();
+        this.nombre = registro.getAlumno().getIdPersona().getPers_nombre();
+        this.primerApellido = registro.getAlumno().getIdPersona().getPers_apaterno();
+        this.segundoApellido = registro.getAlumno().getIdPersona().getPers_amaterno();
+        //this.universidadProcedencia = registro.
+        //this.plantelProcedencia = registro.get
+        //this.licenciatura = registro.getAlumno().getIdCarreraPlantel().getCarrera().getNombreCarrera();
+        if(registro.getOpcionTitulacion() != null) {
+            this.modalidad = registro.getOpcionTitulacion().getNombre();
+        }
+        if(registro.getOpcionTitulacion() != null) {
+            this.fechaRegistro = registro.getFechaRegistro().toLocalDate();
+            this.fechaAplicacion = registro.getFechaRegistro().toLocalDate();
+        }
+
+    }
 
 }

@@ -4,7 +4,7 @@ import fca.cifca.titulacion.exceptions.AlumnoNoEncontradoException;
 import fca.cifca.titulacion.exceptions.BaseDatosNoDisponibleException;
 import fca.cifca.titulacion.exceptions.CurpInvalidaException;
 import fca.cifca.titulacion.exceptions.NumeroCuentaInvalidoException;
-import fca.cifca.titulacion.models.AlumnoModel;
+import fca.cifca.titulacion.models.RegistroModel;
 import fca.cifca.titulacion.models.dtos.AlumnoDTO;
 import fca.cifca.titulacion.models.dtos.AlumnoRequest;
 import fca.cifca.titulacion.models.dtos.RegistroDTO;
@@ -12,9 +12,10 @@ import fca.cifca.titulacion.repositories.RegistroRepository;
 import fca.cifca.titulacion.services.interfaces.IAlumnoService;
 import fca.cifca.titulacion.utils.ERegex;
 import fca.cifca.titulacion.repositories.AlumnoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AlumnoServiceDB implements IAlumnoService {
 
     //Repositorio para acceder a los datos.
@@ -55,9 +56,7 @@ public class AlumnoServiceDB implements IAlumnoService {
                             ("No se encontró al alumno con los datos proporcionados"));
 
         } catch(DataAccessException daex){
-
-            throw new BaseDatosNoDisponibleException("La base de datos se cagó encima y no se puede acceder a ella: "
-            + daex.getMessage());
+            throw new BaseDatosNoDisponibleException(daex.getMessage());
         }
 
     }
@@ -65,6 +64,15 @@ public class AlumnoServiceDB implements IAlumnoService {
     @Override
     public RegistroDTO obtenerRegistro(AlumnoRequest alumnoRequest) {
         return registroRepository.findByNumeroAndCurp(alumnoRequest.getNumeroCuenta(), alumnoRequest.getCurp())
+                .map(RegistroDTO::new)
                 .orElseThrow(() -> new AlumnoNoEncontradoException("No se encontraron registros asociados."));
     }
+
+    @Override
+    public RegistroModel registrarAlumno(RegistroDTO registroDTO) {
+
+        return registroRepository.save(null);
+
+    }
+
 }

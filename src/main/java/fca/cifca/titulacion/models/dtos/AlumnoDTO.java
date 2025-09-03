@@ -23,8 +23,8 @@ public class AlumnoDTO {
         PersonaModel persona = alumno.getIdPersona();
         if (persona != null) {
             this.nombre = persona.getPers_nombre();
-            this.primerApellido = persona.getPers_primer_apellido_acento();
-            this.segundoApellido = persona.getPers_segundo_apellido_acento();
+            this.primerApellido = persona.getPers_apaterno();
+            this.segundoApellido = persona.getPers_amaterno();
             this.sexo = persona.getPers_sexo();
             this.nacionalidad = persona.getPers_id_pais().getPais_nacionalidad();
             this.curp = persona.getPers_curp();

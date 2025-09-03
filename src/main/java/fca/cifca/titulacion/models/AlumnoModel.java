@@ -17,11 +17,13 @@ public class AlumnoModel {
     @Column (name = "alum_id_alumno")
     private int idAlumno;
 
-    @Column (name = "alum_id_carrera_plantel", nullable = true)
-    private int idCarreraPlantel;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn (name = "alum_id_carrera_plantel", nullable = true)
+    private CarreraPlantelModel idCarreraPlantel;
 
-    @Column (name = "alum_id_plan_estudio", nullable = true)
-    private int idPlanEstudio;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn (name = "alum_id_plan_estudio", nullable = true)
+    private PlanEstudioModel idPlanEstudio;
 
     @Column (name = "alum_generacion", nullable = true, length = 4)
     private String generacion;

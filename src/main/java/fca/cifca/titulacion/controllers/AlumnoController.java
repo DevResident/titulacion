@@ -3,19 +3,17 @@ package fca.cifca.titulacion.controllers;
 import fca.cifca.titulacion.models.dtos.AlumnoDTO;
 import fca.cifca.titulacion.models.dtos.AlumnoRequest;
 import fca.cifca.titulacion.models.dtos.RegistroDTO;
-import fca.cifca.titulacion.services.AlumnoService;
+import fca.cifca.titulacion.services.AlumnoServiceDB;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/alumno")
 public class AlumnoController {
 
-    private final AlumnoService alumnoService;
-
-    public AlumnoController(AlumnoService alumnoService) {
-
-        this.alumnoService = alumnoService;
-    }
+    @Autowired
+    private AlumnoServiceDB alumnoService;
 
     @PostMapping("/buscar")
     //public AlumnoDTO buscarAlumno(@RequestParam String numeroCuenta, @RequestParam String curp) {
@@ -29,6 +27,12 @@ public class AlumnoController {
 
         return alumnoService.obtenerRegistro(alumnoRequest);
 
+    }
+
+    //Nuevo registro
+    @PostMapping("registro/nuevo")
+    public ResponseEntity<?> registrarAlumno(@RequestBody AlumnoRequest alumnoRequest) {
+        
     }
 
 }

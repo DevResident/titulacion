@@ -35,28 +35,14 @@ public class PersonaModel {
     @Column(name = "Pers_curp", length = 18, nullable = true)
     private String pers_curp;
 
-    /*
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pers_id_area")
     private AreaModel area;
-    */
 
+/*
     @Column(name = "pers_id_area", nullable = true)
-    private int pers_id_area;
-
-    @Column(name = "pers_id_puesto", nullable = true)
-    private int pers_id_puesto;
-
-    @Column(name = "pers_tipo_puesto", length = 2, nullable = true)
-    private int pers_tipo_puesto;
-
-    //Consultar si es relevante para titulación,
-    // para ver si es join column.
-    @Column(name = "pers_id_estudio_profesional")
-    private int pers_id_estudio_profesional;
-
-    @Column(name = "pers_es_temporal", length = 2, nullable = true)
-    private String pers_es_temporal;
+    private int pers_id_area;*/
 
     // Relación con país
     @ManyToOne(fetch = FetchType.LAZY) // LAZY para que no cargue siempre el país
@@ -84,8 +70,7 @@ public class PersonaModel {
     @Column(name = "pers_cedula_identidad", length = 20, nullable = true)
     private String pers_cedula_identidad;
 
-    @Column(name = "pers_id_domicilio", nullable = true)
-    private int pers_id_domicilio;
+
 
     //Estos ya existen, por qué uno separado para acento????????
     @Column(name = "pers_nombre_acento", length = 40, nullable = true)
