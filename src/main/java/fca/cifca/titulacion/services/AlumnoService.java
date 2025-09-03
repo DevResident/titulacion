@@ -7,6 +7,7 @@ import fca.cifca.titulacion.models.RegistroModel;
 import fca.cifca.titulacion.models.dtos.AlumnoDTO;
 import fca.cifca.titulacion.models.dtos.AlumnoRequest;
 import fca.cifca.titulacion.models.dtos.RegistroDTO;
+import fca.cifca.titulacion.models.dtos.RegistroRequest;
 import fca.cifca.titulacion.services.interfaces.IAlumnoService;
 import fca.cifca.titulacion.utils.HashMapRegistro;
 import org.springframework.stereotype.Service;
@@ -66,7 +67,7 @@ public class AlumnoService implements IAlumnoService {
     }
 
     @Override
-    public RegistroModel registrarAlumno(RegistroDTO registro){
+    public RegistroModel registrarAlumno(RegistroRequest registro){
 
         return null;
 
