@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarreraModel {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "carr_id_carrera")
-    private Integer idCarrera;
+    private String idCarrera;
 
     @Column (name = "carr_nombre", nullable = true, length = 250)
     private String nombreCarrera;

@@ -15,10 +15,10 @@ public class OrientacionModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "orie_id_orientacion")
-    private int orieIdOrientacion;
+    private Integer orieIdOrientacion;
 
     @Column (name = "orie_clave_orientacion", nullable = true)
-    private int orieClaveOrientacion;
+    private Integer orieClaveOrientacion;
 
     @Column (name = "orie_nombre", nullable = true, length = 80)
     private String orieNombre;

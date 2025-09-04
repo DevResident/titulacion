@@ -15,11 +15,11 @@ public class PlanEstudioModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "ples_id_plan_estudio")
-    private int ples_id_plan_estudio;
+    private Integer ples_id_plan_estudio;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "ples_id_carrera", nullable = false)
-    private CarreraModel ples_id_carrera;
+    private CarrerasModel ples_id_carrera;
 
     @Column (name = "ples_nombre", nullable = false, length = 100)
     private String ples_nombre;
@@ -31,31 +31,31 @@ public class PlanEstudioModel {
     private String ples_sistema;
 
     @Column (name = "ples_prim_gen", nullable = true)
-    private int ples_prim_gen;
+    private Integer ples_prim_gen;
 
     @Column (name = "ples_plan", nullable = false, length = 1)
     private String ples_plan;
 
     @Column (name = "ples_duracion", nullable = false)
-    private int ples_duracion;
+    private Integer ples_duracion;
 
     @Column (name = "ples_num_cred_oblig", nullable = false)
-    private int ples_num_cred_oblig;
+    private Integer ples_num_cred_oblig;
 
     @Column (name = "ples_num_cred_opta", nullable = false)
-    private int ples_num_cred_opta;
+    private Integer ples_num_cred_opta;
 
     @Column (name = "ples_vigencia", nullable = false)
-    private int ples_vigencia;
+    private Integer ples_vigencia;
 
     @Column (name = "ples_tipo_programa", nullable = true)
-    private int ples_tipo_programa;
+    private Integer ples_tipo_programa;
 
     @Column (name = "ples_num_asig_cred_flex", nullable = true)
-    private int ples_num_asig_cred_flex;
+    private Integer ples_num_asig_cred_flex;
 
     @Column (name = "ples_cred_seminario", nullable = true)
-    private int ples_cred_seminario;
+    private Integer ples_cred_seminario;
 
 
 }

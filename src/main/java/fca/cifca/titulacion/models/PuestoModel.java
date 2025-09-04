@@ -17,13 +17,13 @@ public class PuestoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pues_id_puesto")
-    private int pues_id_puesto;
+    private Integer pues_id_puesto;
 
     @Column(name = "pues_descripcion", nullable = true, length = 200)
     private String pues_descripcion;
 
     @Column(name = "pues_rango", nullable = true)
-    private int pues_rango;
+    private Integer pues_rango;
 
     @Column(name = "pues_id_coordinacion", nullable = true, length = 6)
     private String pues_id_coordinacion;
@@ -32,7 +32,6 @@ public class PuestoModel {
     private String pues_id_division;
 
     @Column(name = "pues_es_jefe_area", nullable = true)
-    private boolean pues_es_jefe_area;
-
+    private Boolean pues_es_jefe_area;
 
 }

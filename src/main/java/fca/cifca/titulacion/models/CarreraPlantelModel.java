@@ -10,7 +10,9 @@
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
+
     public class CarreraPlantelModel {
+
         @Id
         @GeneratedValue (strategy = GenerationType.IDENTITY)
         @Column (name = "capa_id_carrera_plantel")
@@ -18,7 +20,7 @@
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn (name = "capa_id_carrera", nullable = false)
-        private CarreraModel carrera;
+        private CarrerasModel carrera;
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn (name = "capa_id_institucion", nullable = false)

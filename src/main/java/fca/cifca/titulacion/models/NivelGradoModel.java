@@ -15,7 +15,7 @@ public class NivelGradoModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "nigr_id_nivel_grado")
-    private int idNivelGrado;
+    private Integer idNivelGrado;
 
     @Column (name = "nigr_nombre", nullable = false, length = 150)
     private String nombre;

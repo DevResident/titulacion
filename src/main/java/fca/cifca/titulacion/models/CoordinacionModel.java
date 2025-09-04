@@ -6,16 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table (name = "coor_id_coordinacion")
+@Table (name = "coordinacion")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class CoordinacionModel {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "coor_id_coordinacion")
-    private int idCoordinacion;
+    private String idCoordinacion;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn (name = "coor_id_division", nullable = false)

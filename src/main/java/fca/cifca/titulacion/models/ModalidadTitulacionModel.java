@@ -15,7 +15,7 @@ public class ModalidadTitulacionModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "moti_id_modalidad_titulacion")
-    private int idModalidadTitulacion;
+    private Integer idModalidadTitulacion;
 
     @Column (name = "moti_nombre", nullable = false, length = 60)
     private String nombre;

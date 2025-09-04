@@ -117,7 +117,7 @@ public class AlumnoServiceDB implements IAlumnoService {
 
         registro.setFechaRegistro(LocalDateTime.now());
         registro.setComentario(request.getComentario());
-        registro.setEstatus("ACTIVO");
+        registro.setEstatus("I");
         registro.setFechaInicio(request.getFechaInicio());
         registro.setFechaFin(request.getFechaFin());
         registro.setNombre(request.getNombre());
@@ -128,8 +128,8 @@ public class AlumnoServiceDB implements IAlumnoService {
         registro.setFecAprobacion(request.getFecAprobacion());
         registro.setFolio(request.getFolio());
 
-        return registroRepository.save(registro);
-
+         registroRepository.save(registro);
+    return null;
     }
 
 }

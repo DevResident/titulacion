@@ -13,9 +13,8 @@ import lombok.NoArgsConstructor;
 public class DivisionModel {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "divi_id_division")
-    private int idDivision;
+    private String idDivision;
 
     @Column (name = "divi_nombre", nullable = false, length = 100)
     private String nombreDivision;

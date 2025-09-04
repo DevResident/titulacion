@@ -17,7 +17,7 @@ public class PersonaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pers_id_persona")
-    private int pers_id_persona;
+    private Integer pers_id_persona;
 
     @Column(name = "pers_nombre", length = 40, nullable = true)
     private String pers_nombre;
@@ -35,14 +35,10 @@ public class PersonaModel {
     @Column(name = "Pers_curp", length = 18, nullable = true)
     private String pers_curp;
 
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pers_id_area")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pers_id_area", nullable = true)
     private AreaModel area;
 
-/*
-    @Column(name = "pers_id_area", nullable = true)
-    private int pers_id_area;*/
 
     // Relación con país
     @ManyToOne(fetch = FetchType.LAZY) // LAZY para que no cargue siempre el país
@@ -57,7 +53,7 @@ public class PersonaModel {
 
     //Ni idea de tipo de qué, los registros no ayudan tampoco (A o null).
     @Column(name = "pers_tipo", nullable = true)
-    private char pers_tipo;
+    private String pers_tipo;
 
     @Column(name = "pers_no_inmigrante", length = 10, nullable = true)
     private String pers_no_inmigrante;
@@ -65,12 +61,12 @@ public class PersonaModel {
     @Column(name = "pers_foto_titular", length = 200, nullable = true)
     private String pers_foto_titular;
 
-    //TBA grado académico, este creo sí importa.
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pers_id_grado_academico", nullable = true)
+    private GradoModel pers_grado_academico;
 
     @Column(name = "pers_cedula_identidad", length = 20, nullable = true)
     private String pers_cedula_identidad;
-
-
 
     //Estos ya existen, por qué uno separado para acento????????
     @Column(name = "pers_nombre_acento", length = 40, nullable = true)

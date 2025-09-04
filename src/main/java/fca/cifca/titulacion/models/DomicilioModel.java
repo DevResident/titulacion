@@ -12,10 +12,11 @@ import org.w3c.dom.Text;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DomicilioModel {
+
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "domi_id_domicilio")
-    private int idDomicilio;
+    private Integer idDomicilio;
 
     @Column(name = "domi_calle", nullable = false)
     private String calle;
@@ -30,7 +31,7 @@ public class DomicilioModel {
     private String tipoDomicilio;
 
     @Column(name = "domi_id_codigo_postal", nullable = true)
-    private int idCodigoPostal;
+    private Integer idCodigoPostal;
 
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "domi_id_pais", nullable = true)

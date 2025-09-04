@@ -15,7 +15,7 @@ public class OpcionTitulacionModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "opti_id_opcion_titulacion")
-    private int idOpcionTitulacion;
+    private Integer idOpcionTitulacion;
 
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn (name = "opti_id_area_conocimiento", nullable = true)
@@ -25,7 +25,7 @@ public class OpcionTitulacionModel {
     private String nombre;
 
     @Column (name = "opti_num_modulo", nullable = true)
-    private int numModulo;
+    private Integer numModulo;
 
     @Column (name = "opti_siglas", nullable = true, length = 10)
     private String siglas;

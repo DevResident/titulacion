@@ -15,7 +15,7 @@ public class GradoModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "grad_id_grado")
-    private int idGrado;
+    private Integer idGrado;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn (name = "grad_id_nivel_grado",  nullable = true)

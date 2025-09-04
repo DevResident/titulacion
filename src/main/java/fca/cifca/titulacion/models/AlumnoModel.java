@@ -15,7 +15,7 @@ public class AlumnoModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "alum_id_alumno")
-    private int idAlumno;
+    private Integer idAlumno;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "alum_id_carrera_plantel", nullable = true)
@@ -35,7 +35,7 @@ public class AlumnoModel {
     private String sistema;
 
     @Column (name = "alum_promedio", nullable = true)
-    private double promedio;
+    private Double promedio;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "alum_id_persona", nullable = true)
@@ -49,6 +49,5 @@ public class AlumnoModel {
 
     @Column (name = "alum_egreso", nullable = true, length = 8)
     private String egreso;
-
 
 }

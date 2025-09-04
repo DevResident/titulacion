@@ -15,13 +15,13 @@ public class InstitucionModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "inst_id_institucion")
-    private int inst_id_institucion;
+    private Integer inst_id_institucion;
 
     @Column (name = "inst_id_institucion_superior", nullable = true)
-    private int inst_id_institucion_superior;
+    private Integer inst_id_institucion_superior;
 
     @Column (name = "inst_id_domicilio", nullable = true)
-    private int inst_id_domicilio;
+    private Integer inst_id_domicilio;
 
     @Column (name = "inst_nombre", nullable = false, length = 200)
     private String inst_nombre;
@@ -54,16 +54,16 @@ public class InstitucionModel {
     private String inst_categoria_unam;
 
     @Column (name = "inst_tipo_afiliacion_anfeca", nullable = true)
-    private char inst_tipo_afiliacion_afeca;
+    private String inst_tipo_afiliacion_afeca;
 
     @Column (name = "inst_id_institucion_sede", nullable = true)
-    private int inst_id_institucion_sede;
+    private Integer inst_id_institucion_sede;
 
     @Column (name = "inst_id_pais", nullable = true)
-    private int inst_id_pais;
+    private Integer inst_id_pais;
 
     @Column (name = "inst_id_sector_servicio", nullable = true)
-    private int inst_id_sector_servicio;
+    private Integer inst_id_sector_servicio;
 
     @Column (name = "inst_sector", nullable = true, length = 10)
     private String inst_sector;

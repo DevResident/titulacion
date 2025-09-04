@@ -17,7 +17,7 @@ public class RegistroModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "iaot_id_inscripcion_alumno_ot")
-    private int idRegistroAlumno;
+    private Integer idRegistroAlumno;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "iaot_id_modalidad_titulacion", nullable = false)
@@ -40,6 +40,8 @@ public class RegistroModel {
     @Column(name = "iaot_estatus")
     private String estatus;
 
+    @Column(name = "iaot_id_asesor")
+    private Integer idAsesor = null;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "iaot_id_convocatoria_titulacion")
@@ -65,7 +67,7 @@ public class RegistroModel {
     private String semestreFin;
 
     @Column(name = "iaot_es_opcion_titulacion")
-    private boolean esOpcionTitulacion;
+    private Boolean esOpcionTitulacion;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "iaot_id_orientacion")

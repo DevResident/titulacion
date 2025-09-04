@@ -13,7 +13,7 @@ public class AreaConocimientoModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "arco_id_area_conocimiento")
-    private int idAreaConocimiento;
+    private Integer idAreaConocimiento;
 
     @Column (name = "arco_nombre", nullable = false, length = 50)
     private String arcoNombre;
