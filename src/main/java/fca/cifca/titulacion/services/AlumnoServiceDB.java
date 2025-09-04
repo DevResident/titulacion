@@ -129,7 +129,8 @@ public class AlumnoServiceDB implements IAlumnoService {
         registro.setFolio(request.getFolio());
 
          registroRepository.save(registro);
-    return null;
+
+        return null;
     }
 
 }
