@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import fca.cifca.titulacion.utils.HashMapAlumno;
 import fca.cifca.titulacion.utils.ERegex;
 
+@Deprecated
 @Service
 public class AlumnoService implements IAlumnoService {
 
