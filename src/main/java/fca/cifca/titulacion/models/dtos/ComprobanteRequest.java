@@ -10,26 +10,37 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 public class ComprobanteRequest {
+
     @NotBlank
     private String numeroCuenta;
+
     @NotNull
     private String nombre;
+
     @NotNull
     private String primerApellido;
-    @NotNull
+
     private String segundoApellido;
+
     @NotNull
     private String universidadProcedencia;
+
     @NotNull
     private String plantelProcedencia;
+
     @NotNull
     private String licenciatura;
+
     @NotNull
     private String opcionTitulacion;
+
     @NotNull
     private String modalidad;
+
     @NotNull
     private LocalDate fechaRegistro;
+
     @NotNull
     private LocalDate fechaAplicacion;
+
 }
