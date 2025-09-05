@@ -15,57 +15,57 @@ public class InstitucionModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "inst_id_institucion")
-    private Integer inst_id_institucion;
+    private Integer idInstitucion;
 
     @Column (name = "inst_id_institucion_superior", nullable = true)
-    private Integer inst_id_institucion_superior;
+    private Integer idInstitucionSuperior;
 
     @Column (name = "inst_id_domicilio", nullable = true)
-    private Integer inst_id_domicilio;
+    private Integer idDomicilio;
 
     @Column (name = "inst_nombre", nullable = false, length = 200)
-    private String inst_nombre;
+    private String nombre;
 
     @Column (name = "inst_nivel", nullable = false, length = 1)
-    private String inst_nivel;
+    private String nivel;
 
     @Column (name = "inst_tipo", nullable = false, length = 1)
-    private String inst_tipo;
+    private String tipo;
 
     @Column (name = "inst_abreviatura", nullable = true, length = 20)
-    private String inst_abreviatura;
+    private String abreviatura;
 
     @Column (name = "inst_clave_unam", nullable = true, length = 5)
-    private String inst_clave_unam;
+    private String claveUnam;
 
     @Column (name = "inst_url_pagina", nullable = true, length = 50)
-    private String inst_url_pagina;
+    private String urlPagina;
 
     @Column (name = "inst_afiliada_anfeca", nullable = true)
-    private Boolean inst_afiliada_anfeca;
+    private Boolean esAfiliadAnfeca;
 
     @Column (name = "inst_ruta_logotipo", nullable = true, length = 200)
-    private  String inst_ruta_logotipo;
+    private  String rutaLogotipo;
 
     @Column (name = "inst_sistema", nullable = true, length = 10)
-    private String inst_sistema;
+    private String sistema;
 
     @Column (name = "inst_categoria_unam", nullable = true, length = 15)
-    private String inst_categoria_unam;
+    private String categoriaUnam;
 
     @Column (name = "inst_tipo_afiliacion_anfeca", nullable = true)
-    private String inst_tipo_afiliacion_afeca;
+    private String tipoAfiliacionAnfeca;
 
     @Column (name = "inst_id_institucion_sede", nullable = true)
-    private Integer inst_id_institucion_sede;
+    private Integer idInstitucionSede;
 
     @Column (name = "inst_id_pais", nullable = true)
-    private Integer inst_id_pais;
+    private Integer idPais;
 
     @Column (name = "inst_id_sector_servicio", nullable = true)
-    private Integer inst_id_sector_servicio;
+    private Integer idSectorServicio;
 
     @Column (name = "inst_sector", nullable = true, length = 10)
-    private String inst_sector;
+    private String sector;
 
 }

@@ -20,9 +20,16 @@ public class CarrerasModel {
     @Column(name = "carr_clave")
     private String claveCarrera;
 
-    @Column(name = "carr_nombre")
+    @Column(name = "carr_nombre", nullable = false)
     private String nombreCarrera;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "carr_id_area_carrera", nullable = false)
+    private AreaCarreraModel areaCarrera;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "carr_id_nivel_academico")
+    private NivelAcademicoModel nivelAcademico;
 
 
 }

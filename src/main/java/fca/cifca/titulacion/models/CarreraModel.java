@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Deprecated
+
 @Entity
 @Table (name = "carrera")
 @Data

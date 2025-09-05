@@ -20,6 +20,13 @@ public class NivelAcademicoModel {
     @Column(name = "niac_descripcion", length = 20)
     private String descripcionNivelAcademico;
 
+    @Column(name = "niac_orden")
+    private Integer nivelAcademicoOrden;
 
+    @Column(name = "niac_abv1", length = 10)
+    private String nivelAcademicoAbv1;
+
+    @Column(name = "niac_abv2", length = 10)
+    private String nivelAcademicoAbv2;
 
 }
