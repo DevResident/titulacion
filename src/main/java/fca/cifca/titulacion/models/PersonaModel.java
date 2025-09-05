@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table (name = "persona")
@@ -39,6 +38,19 @@ public class PersonaModel {
     @JoinColumn(name = "pers_id_area", nullable = true)
     private AreaModel area;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pers_id_puesto", nullable = true)
+    private PuestoModel puesto;
+
+    @Column(name = "pers_tipo_puesto", nullable = true, length = 2)
+    private String pers_tipo_puesto;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pers_id_estudio_profesional")
+    private EstudioProfesionalModel estudioProfesional;
+
+    @Column(name = "pers_es_temporal", nullable = true, length = 2)
+    private String pers_es_temporal;
 
     // Relación con país
     @ManyToOne(fetch = FetchType.LAZY) // LAZY para que no cargue siempre el país
@@ -46,7 +58,7 @@ public class PersonaModel {
     private PaisModel pers_id_pais;
 
     @Column(name = "pers_fec_nac", nullable = true)
-    private Date pers_fec_nac;
+    private LocalDate pers_fec_nac;
 
     @Column(name = "pers_sexo", length = 2, nullable = true)
     private String pers_sexo;
@@ -67,6 +79,10 @@ public class PersonaModel {
 
     @Column(name = "pers_cedula_identidad", length = 20, nullable = true)
     private String pers_cedula_identidad;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pers_id_domicilio", nullable = true)
+    private DomicilioModel domicilio;
 
     //Estos ya existen, por qué uno separado para acento????????
     @Column(name = "pers_nombre_acento", length = 40, nullable = true)
