@@ -56,7 +56,7 @@ public class RegistroModel {
     @Column(name = "iaot_fecha_fin")
     private LocalDate fechaFin;
 
-    //Según la consulta, esto es nulo, no hay registros con ese campo diferente a nul
+    //Según la consulta, esto es nulo, no hay registros con ese campo diferente a nulo
     @Column(name = "iaot_nombre")
     private String nombre;
 
