@@ -53,16 +53,15 @@ public class RegistroDTO {
         this.nombre = registro.getAlumno().getIdPersona().getPers_nombre();
         this.primerApellido = registro.getAlumno().getIdPersona().getPers_apaterno();
         this.segundoApellido = registro.getAlumno().getIdPersona().getPers_amaterno();
-        //this.universidadProcedencia = registro.
-        //this.plantelProcedencia = registro.get
-        //this.licenciatura = registro.getAlumno().getIdCarreraPlantel().getCarrera().getNombreCarrera();
-        if(registro.getOpcionTitulacion() != null) {
-            this.modalidad = registro.getOpcionTitulacion().getNombre();
+        this.universidadProcedencia = "Universidad Nacional Autónoma de México";
+        this.plantelProcedencia = "FCA";
+        this.licenciatura = registro.getAlumno().getIdCarreraPlantel().getCarrera().getNombreCarrera();
+        if(registro.getModalidadTitulacion() != null) {
+            this.modalidad = registro.getModalidadTitulacion().getNombre();
+            this.opcionTitulacion = registro.getModalidadTitulacion().getNombre();
         }
-        if(registro.getOpcionTitulacion() != null) {
+
             this.fechaRegistro = registro.getFechaRegistro().toLocalDate();
-            this.fechaAplicacion = registro.getFechaRegistro().toLocalDate();
-        }
 
     }
 

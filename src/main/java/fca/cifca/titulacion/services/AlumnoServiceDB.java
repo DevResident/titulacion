@@ -10,6 +10,7 @@ import fca.cifca.titulacion.models.dtos.AlumnoRequest;
 import fca.cifca.titulacion.models.dtos.RegistroDTO;
 import fca.cifca.titulacion.models.dtos.RegistroRequest;
 import fca.cifca.titulacion.repositories.*;
+import fca.cifca.titulacion.services.clients.ClientePDF;
 import fca.cifca.titulacion.services.interfaces.IAlumnoService;
 import fca.cifca.titulacion.utils.ERegex;
 import org.springframework.dao.DataAccessException;
@@ -29,6 +30,9 @@ public class AlumnoServiceDB implements IAlumnoService {
     private final OrientacionRepository orientacionRepository;
     private final AreaConocimientoRepository areaConocimientoRepository;
 
+    //Cliente PDF.
+    public final ClientePDF cliente;
+
     //DTO.
     private AlumnoDTO alumnoDTO;
 
@@ -36,7 +40,7 @@ public class AlumnoServiceDB implements IAlumnoService {
     public AlumnoServiceDB(AlumnoRepository alumnoRepository, RegistroRepository registroRepository,
                            ModalidadRepository modalidadRepository, OpcionRepository opcionRepository,
                            ConvocatoriaRepository convocatoriaRepository, OrientacionRepository orientacionRepository,
-                           AreaConocimientoRepository areaConocimientoRepository) {
+                           AreaConocimientoRepository areaConocimientoRepository, ClientePDF cliente) {
         this.alumnoRepository = alumnoRepository;
         this.registroRepository = registroRepository;
         this.modalidadRepository = modalidadRepository;
@@ -44,6 +48,7 @@ public class AlumnoServiceDB implements IAlumnoService {
         this.convocatoriaRepository = convocatoriaRepository;
         this.orientacionRepository = orientacionRepository;
         this.areaConocimientoRepository = areaConocimientoRepository;
+        this.cliente = cliente;
     }
 
     @Override
@@ -81,6 +86,14 @@ public class AlumnoServiceDB implements IAlumnoService {
         return registroRepository.findByNumeroAndCurp(alumnoRequest.getNumeroCuenta(), alumnoRequest.getCurp())
                 .map(RegistroDTO::new)
                 .orElseThrow(() -> new AlumnoNoEncontradoException("No se encontraron registros asociados."));
+    }
+
+    //Aquí ya se crea el PDF.
+    public byte[] generarComprobantePdf(AlumnoRequest alumnoRequest) {
+
+        RegistroDTO dto = obtenerRegistro(alumnoRequest);
+        return cliente.generarComprobante(dto);
+
     }
 
     @Override
