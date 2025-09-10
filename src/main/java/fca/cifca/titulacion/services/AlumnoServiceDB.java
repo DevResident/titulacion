@@ -5,10 +5,7 @@ import fca.cifca.titulacion.exceptions.BaseDatosNoDisponibleException;
 import fca.cifca.titulacion.exceptions.CurpInvalidaException;
 import fca.cifca.titulacion.exceptions.NumeroCuentaInvalidoException;
 import fca.cifca.titulacion.models.*;
-import fca.cifca.titulacion.models.dtos.AlumnoDTO;
-import fca.cifca.titulacion.models.dtos.AlumnoRequest;
-import fca.cifca.titulacion.models.dtos.RegistroDTO;
-import fca.cifca.titulacion.models.dtos.RegistroRequest;
+import fca.cifca.titulacion.models.dtos.*;
 import fca.cifca.titulacion.repositories.*;
 import fca.cifca.titulacion.services.clients.ClientePDF;
 import fca.cifca.titulacion.services.interfaces.IAlumnoService;
@@ -89,10 +86,15 @@ public class AlumnoServiceDB implements IAlumnoService {
     }
 
     //Aquí ya se crea el PDF.
-    public byte[] generarComprobantePdf(AlumnoRequest alumnoRequest) {
+    public ArchivoDTO generarComprobantePdf(AlumnoRequest alumnoRequest) {
 
         RegistroDTO dto = obtenerRegistro(alumnoRequest);
-        return cliente.generarComprobante(dto);
+        byte[] pdf = cliente.generarComprobante(dto);
+
+        // Aquí decides el nombre dinámico
+        String nombreArchivo = dto.getNumeroCuenta() + "-comprobante-titulacion.pdf";
+
+        return new ArchivoDTO(nombreArchivo, pdf);
 
     }
 
