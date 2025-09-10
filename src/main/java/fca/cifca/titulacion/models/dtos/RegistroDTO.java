@@ -46,6 +46,9 @@ public class RegistroDTO {
     @NotNull
     private LocalDate fechaAplicacion;
 
+    @NotNull
+    private String urlFotografia;
+
     //Constructor a base del modelo.
     public RegistroDTO(RegistroModel registro) {
 
@@ -60,9 +63,9 @@ public class RegistroDTO {
             this.modalidad = registro.getModalidadTitulacion().getNombre();
             this.opcionTitulacion = registro.getModalidadTitulacion().getNombre();
         }
-
-            this.fechaRegistro = registro.getFechaRegistro().toLocalDate();
-
+        this.fechaRegistro = registro.getFechaRegistro().toLocalDate();
+        //Ver qué hacer con la bendita fotografía luego
+        this.urlFotografia = "https://wiki.teamfortress.com/w/images/e/e6/Engineerava.jpg";
     }
 
 }
