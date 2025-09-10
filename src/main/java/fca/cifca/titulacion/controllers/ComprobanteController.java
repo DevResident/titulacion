@@ -1,6 +1,7 @@
 package fca.cifca.titulacion.controllers;
 
 import fca.cifca.titulacion.models.dtos.AlumnoRequest;
+import fca.cifca.titulacion.models.dtos.ArchivoDTO;
 import fca.cifca.titulacion.services.AlumnoServiceDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -22,18 +23,12 @@ public class ComprobanteController {
     @PostMapping("/pdf")
     public ResponseEntity<byte[]> generarPDFComprobante(@RequestBody AlumnoRequest alumnoRequest) {
 
-        byte[] pdf = alumnoService.generarComprobantePdf(alumnoRequest);
-
-        //Extraer número de cuenta del request
-        String numeroCuenta = alumnoRequest.getNumeroCuenta();
-
-        //Crear el filename así chulo de bonito
-        String nombreArchivo = numeroCuenta + "-comprobante-titulacion.pdf";
+        ArchivoDTO archivo = alumnoService.generarComprobantePdf(alumnoRequest);
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=" + nombreArchivo)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=" + archivo.getNombreArchivo())
                 .contentType(MediaType.APPLICATION_PDF)
-                .body(pdf);
+                .body(archivo.getContenido());
 
     }
 
