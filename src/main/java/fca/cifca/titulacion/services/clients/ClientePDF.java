@@ -5,6 +5,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.http.MediaType;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 @Service
 public class ClientePDF {
 
@@ -18,13 +23,40 @@ public class ClientePDF {
     }
 
     public byte[] generarComprobante(RegistroDTO dto) {
-        return cliente.post()
+
+        byte[] pdf = cliente.post()
                 .uri("/titulacion/comprobante")
-                .contentType(MediaType.APPLICATION_JSON)       //Indicamos que esperamos un PDF
-                .bodyValue(dto)                           //El cuerpo es el DTO
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(dto)
                 .retrieve()
-                .bodyToMono(byte[].class)                 //Esperamos un arreglo de bytes (el PDF)
-                .block();                                 //Bloqueamos para hacerlo síncrono
+                .bodyToMono(byte[].class)
+                .block();
+
+        //Mandar a almacenamiento
+        if(pdf != null) {
+
+            try{
+
+                //Crear el filename así chulo de bonito
+                String nombreArchivo = dto.getNumeroCuenta() + "-comprobante-titulacion.pdf";
+
+                //Ruta.
+                Path path = Paths.get("pdfs", nombreArchivo);
+
+                Files.createDirectories(path.getParent());
+                Files.write(path, pdf);
+                System.out.println("PDF guardado en: " + path.toAbsolutePath());
+
+            } catch (IOException ex){
+
+                ex.printStackTrace();
+
+            }
+
+        }
+
+        return pdf;
+
     }
 
 }
