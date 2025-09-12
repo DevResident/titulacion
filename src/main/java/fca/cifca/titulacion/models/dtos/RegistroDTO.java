@@ -50,7 +50,7 @@ public class RegistroDTO {
     private String urlFotografia;
 
     //Constructor a base del modelo.
-    public RegistroDTO(RegistroModel registro) {
+    public RegistroDTO(RegistroModel registro, String nombreFotografia) {
 
         this.numeroCuenta = registro.getAlumno().getNumeroCuenta();
         this.nombre = registro.getAlumno().getIdPersona().getPers_nombre();
@@ -64,8 +64,15 @@ public class RegistroDTO {
             this.opcionTitulacion = registro.getModalidadTitulacion().getNombre();
         }
         this.fechaRegistro = registro.getFechaRegistro().toLocalDate();
-        //Ver qué hacer con la bendita fotografía luego
-        this.urlFotografia = "https://wiki.teamfortress.com/w/images/e/e6/Engineerava.jpg";
+
+        //Construir la URL
+        if(nombreFotografia != null && !nombreFotografia.isBlank()) {
+
+            this.urlFotografia = "/files/" + nombreFotografia;
+
+        } else {
+            this.urlFotografia = "https://wiki.teamfortress.com/w/images/e/e6/Engineerava.jpg";
+        }
     }
 
 }
