@@ -81,7 +81,7 @@ public class AlumnoServiceDB implements IAlumnoService {
     @Override
     public RegistroDTO obtenerRegistro(AlumnoRequest alumnoRequest) {
         return registroRepository.findByNumeroAndCurp(alumnoRequest.getNumeroCuenta(), alumnoRequest.getCurp())
-                .map(RegistroDTO::new)
+                .map(registro -> new RegistroDTO(registro, alumnoRequest.getNombreFotografia()))
                 .orElseThrow(() -> new AlumnoNoEncontradoException("No se encontraron registros asociados."));
     }
 
@@ -145,7 +145,7 @@ public class AlumnoServiceDB implements IAlumnoService {
 
          registroRepository.save(registro);
 
-        return null;
+        return registro;
     }
 
 }
