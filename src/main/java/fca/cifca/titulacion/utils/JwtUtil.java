@@ -1,0 +1,49 @@
+package fca.cifca.titulacion.utils;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.stereotype.Component;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Date;
+
+@Component
+public class JwtUtil {
+
+    private final String SECRETO = "LittleSolaceComesToThoseWhoGrieveWhen" +
+            "ThoughtsKeepDriftingAsWallsKeepShiftingAndThisGreatBlueWorldOfOursSeems" +
+            "AHouseOfLeavesMomentsBeforeTheWind";
+
+    public String generarToken(String numeroCuenta, String curp){
+
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("numeroCuenta", numeroCuenta);
+        claims.put("curp", curp);
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(numeroCuenta)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
+                .signWith(SignatureAlgorithm.HS512, SECRETO)
+                .compact();
+    }
+
+    public String extractNumeroCuenta(String token) {
+        return Jwts.parser()
+                .setSigningKey(SECRETO)
+                .parseClaimsJws(token)
+                .getBody()
+                .get("numeroCuenta", String.class);
+    }
+
+    public String extractCurp(String token) {
+        return Jwts.parser()
+                .setSigningKey(SECRETO)
+                .parseClaimsJws(token)
+                .getBody()
+                .get("curp", String.class);
+    }
+
+
+}
