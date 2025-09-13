@@ -39,4 +39,5 @@ out/
 ### Archivo de propiedades
 src/main/resources/application.properties
 
-!application.properties
+### Propiedades de las pruebas
+src/main/resources/application-test.properties
