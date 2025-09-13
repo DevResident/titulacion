@@ -1,4 +1,4 @@
-package fca.cifca.titulacion;
+package fca.cifca;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
