@@ -27,7 +27,12 @@ public class UsuariosDBConfig {
     @Bean(name = "usuariosDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.secondary")
     public DataSource usuariosDataSource() {
-        return DataSourceBuilder.create().build();
+        return DataSourceBuilder.create()
+                .url("jdbc:postgresql://localhost:5432/usuarios")
+                .username("postgres")
+                .password("Dortega1008.")
+                .driverClassName("org.postgresql.Driver")
+                .build();
     }
 
     @Bean(name = "usuariosEntityManagerFactory")

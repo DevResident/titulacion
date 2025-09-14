@@ -27,7 +27,14 @@ public class TitulacionDBConfig {
     @Bean(name = "titulacionDataSource")
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource titulacionDataSource() {
-        return DataSourceBuilder.create().build();
+
+        return DataSourceBuilder.create()
+                .url("jdbc:postgresql://localhost:5432/titulacion")
+                .username("postgres")
+                .password("Dortega1008.")
+                .driverClassName("org.postgresql.Driver")
+                .build();
+
     }
 
     @Bean(name = "titulacionEntityManagerFactory")
