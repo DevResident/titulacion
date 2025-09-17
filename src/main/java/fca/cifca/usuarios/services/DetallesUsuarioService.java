@@ -27,7 +27,8 @@ public class DetallesUsuarioService implements IDetallesUsuarioService {
         return User.builder()
                 .username(usuario.getUsuario())
                 .password(usuario.getContrasenia())
-                //TBA lo demás.
+                .roles(usuario.getRol())
+                .disabled(false)
                 .build();
     }
 }
