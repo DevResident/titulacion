@@ -3,6 +3,7 @@ package fca.cifca.titulacion.services;
 import fca.cifca.titulacion.services.interfaces.IArchivosService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -16,12 +17,12 @@ public class ArchivoService implements IArchivosService {
     @Value("${storage.path}")
     private String rutaAlmacenamiento;
 
+    //Recibe los strings desde el controller
     @Override
-    public String guardarArchivo(MultipartFile archivo)
+    @Transactional(transactionManager = "titulacionTransactionManager", readOnly = true)
+    public String guardarArchivo(MultipartFile archivo, String numeroCuenta, String curp)
             throws IOException {
 
-        String numeroCuenta = "bbb";
-        String curp = "aaa";
 
         //Crear dinámicamente el nombre del directorio
         String nombreDirectorio = numeroCuenta + "_" + curp;

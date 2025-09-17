@@ -12,6 +12,7 @@ import fca.cifca.titulacion.services.interfaces.IAlumnoService;
 import fca.cifca.titulacion.utils.ERegex;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -49,6 +50,7 @@ public class AlumnoServiceDB implements IAlumnoService {
     }
 
     @Override
+    @Transactional(transactionManager = "titulacionTransactionManager", readOnly = true)
     public AlumnoDTO buscarAlumno(String numeroCuenta, String curp) {
 
         try{
@@ -79,6 +81,7 @@ public class AlumnoServiceDB implements IAlumnoService {
     }
 
     @Override
+    @Transactional(transactionManager = "titulacionTransactionManager", readOnly = true)
     public RegistroDTO obtenerRegistro(AlumnoRequest alumnoRequest) {
         return registroRepository.findByNumeroAndCurp(alumnoRequest.getNumeroCuenta(), alumnoRequest.getCurp())
                 .map(registro -> new RegistroDTO(registro, alumnoRequest.getNombreFotografia()))
@@ -86,6 +89,8 @@ public class AlumnoServiceDB implements IAlumnoService {
     }
 
     //Aquí ya se crea el PDF.
+    //ESTE M�TODO NO FUE DEFINIDO EN LA INTERFAZ Y NO S� PQ. PROCEDER CON PRECAUCI�N.
+    @Transactional(transactionManager = "titulacionTransactionManager", readOnly = true)
     public ArchivoDTO generarComprobantePdf(AlumnoRequest alumnoRequest) {
 
         RegistroDTO dto = obtenerRegistro(alumnoRequest);
@@ -99,6 +104,7 @@ public class AlumnoServiceDB implements IAlumnoService {
     }
 
     @Override
+    @Transactional(transactionManager = "titulacionTransactionManager", readOnly = true)
     public RegistroModel registrarAlumno(RegistroRequest request) {
 
         RegistroModel registro = new RegistroModel();

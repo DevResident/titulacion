@@ -8,7 +8,7 @@ import java.io.IOException;
 @Service
 public interface IArchivosService {
 
-    public String guardarArchivo(MultipartFile archivo)
+    public String guardarArchivo(MultipartFile archivo, String numeroCuenta, String curp)
             throws IOException;
 
 }
