@@ -45,5 +45,18 @@ public class JwtUtil {
                 .get("curp", String.class);
     }
 
+    //Extraer el token.
+    public String extractTokenFromHeader(String authHeader){
+
+        //"Bearer " tiene 7 caracteres, por eso se pone el 7.
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+
+            return authHeader.substring(7);
+
+        }
+
+        throw new RuntimeException("Token no encontrado o inválido en la cabecera Authorization");
+    }
+
 
 }
