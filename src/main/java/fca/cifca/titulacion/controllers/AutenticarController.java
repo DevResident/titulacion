@@ -32,8 +32,8 @@ public class AutenticarController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
             String token = jwtUtil.generarToken(
-                    request.getUsuario(),  // lo usamos como "numeroCuenta"
-                    "SIN_CURP"             // o podrías extraer curp de la BD si lo agregas
+                    request.getUsuario(),
+                    request.getContrasenia()
             );
 
             return ResponseEntity.ok(Map.of("token", token));
