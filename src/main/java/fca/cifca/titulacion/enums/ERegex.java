@@ -1,4 +1,4 @@
-package fca.cifca.titulacion.utils;
+package fca.cifca.titulacion.enums;
 
 public enum ERegex {
 
