@@ -1,17 +1,25 @@
 package fca.cifca.titulacion.models.dtos;
 
+import fca.cifca.titulacion.enums.Planteles;
+import fca.cifca.titulacion.enums.Universidades;
 import fca.cifca.titulacion.models.RegistroModel;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegistroDTO {
+
+
+    @Value("${storage.path}")
+    private String rutaAlmacenamiento;
 
     @NotBlank
     private String numeroCuenta;
@@ -48,7 +56,6 @@ public class RegistroDTO {
 
     @NotNull
     private String urlFotografia;
-
     //Constructor a base del modelo.
     public RegistroDTO(RegistroModel registro, String nombreFotografia) {
 
@@ -56,8 +63,8 @@ public class RegistroDTO {
         this.nombre = registro.getAlumno().getIdPersona().getPers_nombre();
         this.primerApellido = registro.getAlumno().getIdPersona().getPers_apaterno();
         this.segundoApellido = registro.getAlumno().getIdPersona().getPers_amaterno();
-        this.universidadProcedencia = "Universidad Nacional Autónoma de México";
-        this.plantelProcedencia = "FCA";
+        this.universidadProcedencia = Universidades.UNAM.getNombre();
+        this.plantelProcedencia = Planteles.FCA.getNombre();
         this.licenciatura = registro.getAlumno().getIdCarreraPlantel().getCarrera().getNombreCarrera();
         if(registro.getModalidadTitulacion() != null) {
             this.modalidad = registro.getModalidadTitulacion().getNombre();
@@ -66,13 +73,12 @@ public class RegistroDTO {
         this.fechaRegistro = registro.getFechaRegistro().toLocalDate();
 
         //Construir la URL
-        if(nombreFotografia != null && !nombreFotografia.isBlank()) {
-
-            this.urlFotografia = "/files/" + nombreFotografia;
-
-        } else {
-            this.urlFotografia = "https://wiki.teamfortress.com/w/images/e/e6/Engineerava.jpg";
+        if(nombreFotografia == null || nombreFotografia.isBlank()) {
+            return;
         }
+
+        this.urlFotografia = "/home/crimsonking/uploads/files/" + nombreFotografia;
+
     }
 
 }
