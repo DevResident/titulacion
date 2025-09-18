@@ -9,7 +9,7 @@ import fca.cifca.titulacion.models.dtos.*;
 import fca.cifca.titulacion.repositories.*;
 import fca.cifca.titulacion.services.clients.ClientePDF;
 import fca.cifca.titulacion.services.interfaces.IAlumnoService;
-import fca.cifca.titulacion.utils.ERegex;
+import fca.cifca.titulacion.enums.ERegex;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,7 +53,7 @@ public class AlumnoServiceDB implements IAlumnoService {
     @Transactional(transactionManager = "titulacionTransactionManager", readOnly = true)
     public AlumnoDTO buscarAlumno(String numeroCuenta, String curp) {
 
-        try{
+        try {
 
             //Verificar que el número de cuenta introducido sí coindica con la regex
             if (!numeroCuenta.matches(ERegex.NUMERO_CUENTA.getPatron())) {
@@ -63,7 +63,7 @@ public class AlumnoServiceDB implements IAlumnoService {
             }
 
             //Validar formato de CURP.
-            if(!curp.matches(ERegex.CURP.getPatron()) || curp.length() != 18){
+            if (!curp.matches(ERegex.CURP.getPatron()) || curp.length() != 18) {
 
                 throw new CurpInvalidaException("La CURP no cumple con el formato esperado");
 
@@ -74,7 +74,7 @@ public class AlumnoServiceDB implements IAlumnoService {
                     .orElseThrow(() -> new AlumnoNoEncontradoException
                             ("No se encontró al alumno con los datos proporcionados"));
 
-        } catch(DataAccessException daex){
+        } catch (DataAccessException daex) {
             throw new BaseDatosNoDisponibleException(daex.getMessage());
         }
 
@@ -83,8 +83,11 @@ public class AlumnoServiceDB implements IAlumnoService {
     @Override
     @Transactional(transactionManager = "titulacionTransactionManager", readOnly = true)
     public RegistroDTO obtenerRegistro(AlumnoRequest alumnoRequest) {
-        return registroRepository.findByNumeroAndCurp(alumnoRequest.getNumeroCuenta(), alumnoRequest.getCurp())
-                .map(registro -> new RegistroDTO(registro, alumnoRequest.getNombreFotografia()))
+        return registroRepository
+                .findByNumeroAndCurp(alumnoRequest.getNumeroCuenta(), alumnoRequest.getCurp())
+                .map(registro ->
+                        new RegistroDTO(registro,
+                                alumnoRequest.getNumeroCuenta() + "_" + alumnoRequest.getCurp() + "/foto"))
                 .orElseThrow(() -> new AlumnoNoEncontradoException("No se encontraron registros asociados."));
     }
 
@@ -96,7 +99,7 @@ public class AlumnoServiceDB implements IAlumnoService {
         RegistroDTO dto = obtenerRegistro(alumnoRequest);
         byte[] pdf = cliente.generarComprobante(dto);
 
-        // Aquí decides el nombre dinámico
+        // Aquí se crea el nombre dinámico
         String nombreArchivo = dto.getNumeroCuenta() + "-comprobante-titulacion.pdf";
 
         return new ArchivoDTO(nombreArchivo, pdf);
@@ -149,7 +152,7 @@ public class AlumnoServiceDB implements IAlumnoService {
         registro.setFecAprobacion(request.getFecAprobacion());
         registro.setFolio(request.getFolio());
 
-         registroRepository.save(registro);
+        registroRepository.save(registro);
 
         return registro;
     }

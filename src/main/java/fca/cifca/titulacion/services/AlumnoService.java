@@ -12,7 +12,7 @@ import fca.cifca.titulacion.services.interfaces.IAlumnoService;
 import fca.cifca.titulacion.utils.HashMapRegistro;
 import org.springframework.stereotype.Service;
 import fca.cifca.titulacion.utils.HashMapAlumno;
-import fca.cifca.titulacion.utils.ERegex;
+import fca.cifca.titulacion.enums.ERegex;
 
 @Deprecated
 @Service
