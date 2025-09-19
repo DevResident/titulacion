@@ -40,7 +40,7 @@ public class AlumnoControllerTest {
     @Test
     @DisplayName("Debe devolver AlumnoDTO al buscar alumno")
     void testBuscarAlumno() throws Exception {
-        AlumnoRequest request = new AlumnoRequest("123456789", "CURP123456");
+        AlumnoRequest request = new AlumnoRequest("123456789", "CURP123456", null);
         AlumnoDTO mockResponse = new AlumnoDTO(
                 "123456789",
                 "Diego",
@@ -48,7 +48,12 @@ public class AlumnoControllerTest {
                 "Ortega",
                 "M",
                 "Mexicana",
-                "CURP123456"
+                "CURP123456",
+                "info",
+                "esc",
+                "1999",
+                4.55
+
         );
 
         //Fingiremos que esto es un servicio real. Todo en la vida es mentira a fin de cuentas.
@@ -69,8 +74,9 @@ public class AlumnoControllerTest {
     @Test
     @DisplayName("Debe devolver RegistroDTO al obtener registro")
     void testObtenerRegistro() throws Exception {
-        AlumnoRequest request = new AlumnoRequest("987654321", "CURP987654");
+        AlumnoRequest request = new AlumnoRequest("987654321", "CURP987654", null);
         RegistroDTO mockResponse = new RegistroDTO(
+                null,
                 "987654321",
                 "Ana",
                 "Pérez",
@@ -81,7 +87,8 @@ public class AlumnoControllerTest {
                 "Tesis",
                 "Escolarizada",
                 LocalDate.of(2025, 1, 10),
-                LocalDate.of(2025, 2, 20)
+                LocalDate.of(2025, 2, 20),
+                null
         );
 
         when(alumnoService.obtenerRegistro(request)).thenReturn(mockResponse);
