@@ -50,7 +50,6 @@ public class AlumnoServiceDB implements IAlumnoService {
     }
 
     @Override
-    @Transactional(transactionManager = "titulacionTransactionManager", readOnly = true)
     public AlumnoDTO buscarAlumno(String numeroCuenta, String curp) {
 
         try {
@@ -81,7 +80,6 @@ public class AlumnoServiceDB implements IAlumnoService {
     }
 
     @Override
-    @Transactional(transactionManager = "titulacionTransactionManager", readOnly = true)
     public RegistroDTO obtenerRegistro(AlumnoRequest alumnoRequest) {
         return registroRepository
                 .findByNumeroAndCurp(alumnoRequest.getNumeroCuenta(), alumnoRequest.getCurp())
@@ -93,7 +91,6 @@ public class AlumnoServiceDB implements IAlumnoService {
 
     //Aquí ya se crea el PDF.
     //ESTE M�TODO NO FUE DEFINIDO EN LA INTERFAZ Y NO S� PQ. PROCEDER CON PRECAUCI�N.
-    @Transactional(transactionManager = "titulacionTransactionManager", readOnly = true)
     public ArchivoDTO generarComprobantePdf(AlumnoRequest alumnoRequest) {
 
         RegistroDTO dto = obtenerRegistro(alumnoRequest);
@@ -107,7 +104,6 @@ public class AlumnoServiceDB implements IAlumnoService {
     }
 
     @Override
-    @Transactional(transactionManager = "titulacionTransactionManager", readOnly = true)
     public RegistroModel registrarAlumno(RegistroRequest request) {
 
         RegistroModel registro = new RegistroModel();

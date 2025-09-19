@@ -14,9 +14,9 @@ public class UsuarioModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idUsuario;
+    private Integer idusuario;
 
-    @Column(name = "numeroCuenta", length = 9, nullable = false, unique = true)
+    @Column(name = "numerocuenta", length = 9, nullable = false, unique = true)
     private String usuario;
 
     @Column(name = "curp", length = 18, nullable = false)

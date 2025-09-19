@@ -22,7 +22,6 @@ public class ArchivoService implements IArchivosService {
 
     //Recibe los strings desde el controller
     @Override
-    @Transactional(transactionManager = "titulacionTransactionManager", readOnly = true)
     public String guardarArchivo(MultipartFile archivo, AlumnoRequest alumnoRequest, TiposDocumento tipo)
             throws IOException {
 

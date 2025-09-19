@@ -28,7 +28,7 @@ public class PuestoModel {
     @Column(name = "pues_id_coordinacion", nullable = true, length = 6)
     private String pues_id_coordinacion;
 
-    @Column(name = "pues_id_division", nullable = true, length = 2)
+    @Column(name = "pues_id_division", nullable = true, length = 3)
     private String pues_id_division;
 
     @Column(name = "pues_es_jefe_area", nullable = true)

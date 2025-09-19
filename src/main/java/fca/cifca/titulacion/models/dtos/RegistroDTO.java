@@ -77,7 +77,7 @@ public class RegistroDTO {
             return;
         }
 
-        this.urlFotografia = "/home/crimsonking/uploads/files/" + nombreFotografia;
+        this.urlFotografia = "/home/devresident/uploads/files/" + nombreFotografia;
 
     }
 
