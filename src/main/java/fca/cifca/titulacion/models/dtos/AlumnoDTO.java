@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,6 +24,7 @@ public class AlumnoDTO {
     private String sistema;
     private String ingreso;
     private Double promedio;
+    private LocalDate fechaNac;
 
     //Constructor para mappear el Model al DTO
     public AlumnoDTO(AlumnoModel alumno) {
@@ -40,6 +43,7 @@ public class AlumnoDTO {
             this.licenciatura = alumno.getIdCarreraPlantel().getCarrera().getNombreCarrera();
             this.ingreso = alumno.getGeneracion();
             this.promedio = alumno.getPromedio();
+            this.fechaNac = persona.getPers_fec_nac();
         }
 
     }
