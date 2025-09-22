@@ -13,8 +13,5 @@ public class AlumnoRequest {
 
     @NotBlank
     private String numeroCuenta;
-    @NotNull
     private String curp;
-    @NotNull
-    private String nombreFotografia;
 }

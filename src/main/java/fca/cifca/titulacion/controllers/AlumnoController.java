@@ -17,10 +17,8 @@ public class AlumnoController {
     private AlumnoServiceDB alumnoService;
 
     @PostMapping("/buscar")
-    //public AlumnoDTO buscarAlumno(@RequestParam String numeroCuenta, @RequestParam String curp) {
     public AlumnoDTO buscarAlumno(@RequestBody AlumnoRequest alumnoRequest) {
-        //return alumnoService.buscarAlumno(numeroCuenta, curp);
-        return alumnoService.buscarAlumno(alumnoRequest.getNumeroCuenta(), alumnoRequest.getCurp());
+        return alumnoService.buscarAlumno(alumnoRequest.getNumeroCuenta());
     }
 
     @PostMapping("/registro")

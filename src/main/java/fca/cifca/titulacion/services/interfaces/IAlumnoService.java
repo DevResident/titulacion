@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface IAlumnoService {
-    AlumnoDTO buscarAlumno(String numeroCuenta, String curp);
+    AlumnoDTO buscarAlumno(String numeroCuenta);
     RegistroDTO obtenerRegistro(AlumnoRequest alumnoRequest);
     RegistroModel registrarAlumno(RegistroRequest registro);
 }

@@ -19,4 +19,10 @@ public interface AlumnoRepository extends JpaRepository<AlumnoModel, Integer> {
     Optional<AlumnoModel> findByNumeroCuentaAndCurp(@Param("numeroCuenta") String numeroCuenta,
                                                     @Param("curp") String curp);
 
+    @Query("SELECT a FROM AlumnoModel a " +
+            "JOIN FETCH a.idPersona p " +
+            "JOIN FETCH p.pers_id_pais pais " +
+            "WHERE a.numeroCuenta = :numeroCuenta ")
+    Optional<AlumnoModel> findByNumeroCuenta(@Param("numeroCuenta") String numeroCuenta);
+
 }

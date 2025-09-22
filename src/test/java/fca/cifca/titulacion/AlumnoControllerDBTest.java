@@ -56,9 +56,8 @@ public class AlumnoControllerDBTest {
 
         AlumnoRequest request = new AlumnoRequest();
         request.setNumeroCuenta("320247568");
-        request.setCurp("OEMD040810HDFRLGA7");
 
-        when(alumnoService.buscarAlumno("320247568", "OEMD040810HDFRLGA7"))
+        when(alumnoService.buscarAlumno("320247568"))
                 .thenReturn(mockAlumno);
 
         mockMvc.perform(post("/alumno/buscar")
@@ -80,7 +79,6 @@ public class AlumnoControllerDBTest {
 
         AlumnoRequest request = new AlumnoRequest();
         request.setNumeroCuenta("320247568");
-        request.setCurp("OEMD040810HDFRLGA7");
 
         RegistroDTO registro = new RegistroDTO();
         registro.setNumeroCuenta("320247568");

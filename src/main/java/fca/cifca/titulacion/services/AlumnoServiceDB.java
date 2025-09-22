@@ -50,7 +50,7 @@ public class AlumnoServiceDB implements IAlumnoService {
     }
 
     @Override
-    public AlumnoDTO buscarAlumno(String numeroCuenta, String curp) {
+    public AlumnoDTO buscarAlumno(String numeroCuenta) {
 
         try {
 
@@ -62,13 +62,13 @@ public class AlumnoServiceDB implements IAlumnoService {
             }
 
             //Validar formato de CURP.
-            if (!curp.matches(ERegex.CURP.getPatron()) || curp.length() != 18) {
+          /*  if (!curp.matches(ERegex.CURP.getPatron()) || curp.length() != 18) {
 
                 throw new CurpInvalidaException("La CURP no cumple con el formato esperado");
 
-            }
+            }*/
 
-            return alumnoRepository.findByNumeroCuentaAndCurp(numeroCuenta, curp)
+            return alumnoRepository.findByNumeroCuenta(numeroCuenta)
                     .map(AlumnoDTO::new)
                     .orElseThrow(() -> new AlumnoNoEncontradoException
                             ("No se encontró al alumno con los datos proporcionados"));
@@ -82,10 +82,10 @@ public class AlumnoServiceDB implements IAlumnoService {
     @Override
     public RegistroDTO obtenerRegistro(AlumnoRequest alumnoRequest) {
         return registroRepository
-                .findByNumeroAndCurp(alumnoRequest.getNumeroCuenta(), alumnoRequest.getCurp())
+                .findByNumeroCuenta(alumnoRequest.getNumeroCuenta())
                 .map(registro ->
                         new RegistroDTO(registro,
-                                alumnoRequest.getNumeroCuenta() + "_" + alumnoRequest.getCurp() + "/foto"))
+                                alumnoRequest.getNumeroCuenta() + "_" + "/foto"))
                 .orElseThrow(() -> new AlumnoNoEncontradoException("No se encontraron registros asociados."));
     }
 

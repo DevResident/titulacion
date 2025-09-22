@@ -18,5 +18,10 @@ public interface RegistroRepository extends JpaRepository<RegistroModel, Integer
             @Param("numeroCuenta") String numeroCuenta,
             @Param("curp") String curp
     );
+    @Query("SELECT r FROM inscripcion_alumno_ot r " +
+            "WHERE r.alumno.numeroCuenta = :numeroCuenta")
+    Optional<RegistroModel> findByNumeroCuenta(
+            @Param("numeroCuenta") String numeroCuenta
+    );
 
 }

@@ -5,7 +5,7 @@ import fca.cifca.titulacion.controllers.AlumnoController;
 import fca.cifca.titulacion.models.dtos.AlumnoDTO;
 import fca.cifca.titulacion.models.dtos.AlumnoRequest;
 import fca.cifca.titulacion.models.dtos.RegistroDTO;
-import fca.cifca.titulacion.services.AlumnoService;
+import fca.cifca.titulacion.services.AlumnoServiceDB;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,7 @@ public class AlumnoControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private AlumnoService alumnoService;
+    private AlumnoServiceDB alumnoService;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -40,24 +40,11 @@ public class AlumnoControllerTest {
     @Test
     @DisplayName("Debe devolver AlumnoDTO al buscar alumno")
     void testBuscarAlumno() throws Exception {
-        AlumnoRequest request = new AlumnoRequest("123456789", "CURP123456", null);
-        AlumnoDTO mockResponse = new AlumnoDTO(
-                "123456789",
-                "Diego",
-                "Damiel",
-                "Ortega",
-                "M",
-                "Mexicana",
-                "CURP123456",
-                "info",
-                "esc",
-                "1999",
-                4.55
-
-        );
+        AlumnoRequest request = new AlumnoRequest("123456789", "");
+        AlumnoDTO mockResponse = new AlumnoDTO();
 
         //Fingiremos que esto es un servicio real. Todo en la vida es mentira a fin de cuentas.
-        when(alumnoService.buscarAlumno(eq("123456789"), eq("CURP123456")))
+        when(alumnoService.buscarAlumno(eq("123456789")))
                 .thenReturn(mockResponse);
 
         mockMvc.perform(post("/alumno/buscar")
@@ -74,7 +61,7 @@ public class AlumnoControllerTest {
     @Test
     @DisplayName("Debe devolver RegistroDTO al obtener registro")
     void testObtenerRegistro() throws Exception {
-        AlumnoRequest request = new AlumnoRequest("987654321", "CURP987654", null);
+        AlumnoRequest request = new AlumnoRequest("987654321", "");
         RegistroDTO mockResponse = new RegistroDTO(
                 null,
                 "987654321",
