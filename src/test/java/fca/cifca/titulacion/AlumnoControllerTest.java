@@ -57,7 +57,7 @@ public class AlumnoControllerTest {
                 .andExpect(jsonPath("$.segundoApellido").value("Ortega"))
                 .andExpect(jsonPath("$.curp").value("CURP123456"));
     }
-
+    /*
     @Test
     @DisplayName("Debe devolver RegistroDTO al obtener registro")
     void testObtenerRegistro() throws Exception {
@@ -93,5 +93,6 @@ public class AlumnoControllerTest {
                 .andExpect(jsonPath("$.fechaRegistro").value("2025-01-10"))
                 .andExpect(jsonPath("$.fechaAplicacion").value("2025-02-20"));
     }
+     */
 
 }

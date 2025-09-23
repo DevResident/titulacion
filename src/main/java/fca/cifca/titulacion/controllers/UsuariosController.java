@@ -17,7 +17,7 @@ public class UsuariosController {
 
     private final AltaUsuarioService altaUsuarioService;
 
-    @PostMapping("/alta-de-usuarios")
+    @PostMapping("/alta")
     public ResponseEntity<UsuarioModel> altaDeUsuarios(@RequestBody AltaUsuarioRequest altaUsuarioRequest) {
 
         UsuarioModel nuevoUsuario = altaUsuarioService.darAltaUsuario(altaUsuarioRequest);

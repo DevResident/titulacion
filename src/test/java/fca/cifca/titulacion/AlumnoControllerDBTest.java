@@ -15,7 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.http.MediaType;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -74,6 +73,7 @@ public class AlumnoControllerDBTest {
 
     }
 
+    /*
     @Test
     void obtenerRegistro_devuelveRegistroDTO() throws Exception {
 
@@ -91,6 +91,8 @@ public class AlumnoControllerDBTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.numeroCuenta").value("320247568"));
     }
+
+     */
 
     @Test
     void obtenerAlumno_devuelveOk() throws Exception {

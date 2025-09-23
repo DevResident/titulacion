@@ -17,10 +17,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class RegistroDTO {
 
-
-    @Value("${storage.path}")
-    private String rutaAlmacenamiento;
-
     @NotBlank
     private String numeroCuenta;
 
@@ -77,7 +73,7 @@ public class RegistroDTO {
             return;
         }
 
-        this.urlFotografia = "/home/devresident/uploads/files/" + nombreFotografia;
+        this.urlFotografia = "/home/crimsonking/uploads/files/" + nombreFotografia;
 
     }
 

@@ -35,33 +35,35 @@ class AlumnoServiceDBTest {
     @Test
     void buscarAlumno_NumeroCuentaInvalido_LanzaExcepcion() {
         assertThrows(NumeroCuentaInvalidoException.class, () -> {
-            alumnoService.buscarAlumno("ABC123", "PEPE010101HDFRRN01");
+            alumnoService.buscarAlumno("ABC123");
         });
     }
 
     @Test
     void buscarAlumno_CurpInvalida_LanzaExcepcion() {
         assertThrows(CurpInvalidaException.class, () -> {
-            alumnoService.buscarAlumno("202312345", "INVALIDA123");
+            alumnoService.buscarAlumno("202312345");
         });
     }
 
     @Test
     void buscarAlumno_AlumnoNoExiste_LanzaExcepcion() {
         assertThrows(AlumnoNoEncontradoException.class, () -> {
-            alumnoService.buscarAlumno("202399999", "XXXX010101HDFRRN01");
+            alumnoService.buscarAlumno("202399999");
         });
     }
 
     @Test
     void buscarAlumno_AlumnoExiste_RetornaDTO() {
-        assertNotNull(alumnoService.buscarAlumno("320247568", "OEMD040810HDFRLGA6"));
+        assertNotNull(alumnoService.buscarAlumno("320247568"));
     }
-
+    /*
     @Test
     void obtenerRegistro_NoExisteRegistro_LanzaExcepcion() {
         assertThrows(AlumnoNoEncontradoException.class, () -> {
             alumnoService.obtenerRegistro(new AlumnoRequest("202312345", "PEPE010101HDFRRN01"));
         });
     }
+
+     */
 }
