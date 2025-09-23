@@ -2,7 +2,6 @@ package fca.cifca.titulacion.services;
 
 import fca.cifca.titulacion.exceptions.AlumnoNoEncontradoException;
 import fca.cifca.titulacion.exceptions.BaseDatosNoDisponibleException;
-import fca.cifca.titulacion.exceptions.CurpInvalidaException;
 import fca.cifca.titulacion.exceptions.NumeroCuentaInvalidoException;
 import fca.cifca.titulacion.models.*;
 import fca.cifca.titulacion.models.dtos.*;
@@ -12,7 +11,6 @@ import fca.cifca.titulacion.services.interfaces.IAlumnoService;
 import fca.cifca.titulacion.enums.ERegex;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -30,9 +28,6 @@ public class AlumnoServiceDB implements IAlumnoService {
 
     //Cliente PDF.
     public final ClientePDF cliente;
-
-    //DTO.
-    private AlumnoDTO alumnoDTO;
 
     //Inyectar dependencia mediante constructor.
     public AlumnoServiceDB(AlumnoRepository alumnoRepository, RegistroRepository registroRepository,
@@ -80,20 +75,20 @@ public class AlumnoServiceDB implements IAlumnoService {
     }
 
     @Override
-    public RegistroDTO obtenerRegistro(AlumnoRequest alumnoRequest) {
+    public RegistroDTO obtenerRegistro(String numeroCuenta) {
         return registroRepository
-                .findByNumeroCuenta(alumnoRequest.getNumeroCuenta())
+                .findByNumeroCuenta(numeroCuenta)
                 .map(registro ->
                         new RegistroDTO(registro,
-                                alumnoRequest.getNumeroCuenta() + "_" + "/foto"))
+                                //Dejar foto en min�sculas, si no no lo encuentra
+                                numeroCuenta + "/foto"))
                 .orElseThrow(() -> new AlumnoNoEncontradoException("No se encontraron registros asociados."));
     }
 
-    //Aquí ya se crea el PDF.
-    //ESTE M�TODO NO FUE DEFINIDO EN LA INTERFAZ Y NO S� PQ. PROCEDER CON PRECAUCI�N.
-    public ArchivoDTO generarComprobantePdf(AlumnoRequest alumnoRequest) {
+    @Override
+    public ArchivoDTO generarComprobantePdf(String numeroCuenta) {
 
-        RegistroDTO dto = obtenerRegistro(alumnoRequest);
+        RegistroDTO dto = obtenerRegistro(numeroCuenta);
         byte[] pdf = cliente.generarComprobante(dto);
 
         // Aquí se crea el nombre dinámico
