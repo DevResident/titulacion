@@ -22,11 +22,11 @@ public class ArchivoService implements IArchivosService {
 
     //Recibe los strings desde el controller
     @Override
-    public String guardarArchivo(MultipartFile archivo, AlumnoRequest alumnoRequest, TiposDocumento tipo)
+    public String guardarArchivo(MultipartFile archivo, String numeroCuenta, TiposDocumento tipo)
             throws IOException {
 
         //Crear dinámicamente el nombre del directorio
-        String nombreDirectorio = alumnoRequest.getNumeroCuenta() + "_" + alumnoRequest.getCurp();
+        String nombreDirectorio = numeroCuenta;
 
         //Verificar que el path raíz exista y evitar chirimoyadas
         Path rutaDirectorioUsuario = Paths.get(rutaAlmacenamiento, nombreDirectorio);
