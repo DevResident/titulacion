@@ -1,13 +1,10 @@
 package fca.cifca.titulacion.controllers;
 
 import fca.cifca.titulacion.enums.TiposDocumento;
-import fca.cifca.titulacion.models.dtos.AlumnoRequest;
 import fca.cifca.titulacion.services.ArchivoService;
 import fca.cifca.titulacion.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,11 +23,9 @@ public class CargaArchivosController {
                                                 @RequestHeader("Authorization") String authHeader){
 
         try{
-            AlumnoRequest alumnoRequest = new AlumnoRequest();
             String token = jwtUtil.extractTokenFromHeader(authHeader);
-            alumnoRequest.setNumeroCuenta(jwtUtil.extractNumeroCuenta(token));
-            alumnoRequest.setCurp(jwtUtil.extractCurp(token));
-            String urlArchivo = archivoService.guardarArchivo(archivo, alumnoRequest, tipo);
+            String numeroCuenta = jwtUtil.extractNumeroCuenta(token);
+            String urlArchivo = archivoService.guardarArchivo(archivo, numeroCuenta, tipo);
 
             return ResponseEntity.ok("Archivo guardado en: " + urlArchivo);
 
