@@ -23,6 +23,7 @@ public class CargaArchivosController {
                                                 @RequestHeader("Authorization") String authHeader){
 
         try{
+
             String token = jwtUtil.extractTokenFromHeader(authHeader);
             String numeroCuenta = jwtUtil.extractNumeroCuenta(token);
             String urlArchivo = archivoService.guardarArchivo(archivo, numeroCuenta, tipo);

@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class AltaUsuarioRequest {
 
     private String numeroCuenta;
-    private String curp;
+    private String correo;
 
 }

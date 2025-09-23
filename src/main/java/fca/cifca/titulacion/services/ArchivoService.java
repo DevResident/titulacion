@@ -28,7 +28,7 @@ public class ArchivoService implements IArchivosService {
         //Crear dinámicamente el nombre del directorio
         String nombreDirectorio = numeroCuenta;
 
-        //Verificar que el path raíz exista y evitar chirimoyadas
+        //Verificar que el path raíz exista
         Path rutaDirectorioUsuario = Paths.get(rutaAlmacenamiento, nombreDirectorio);
         if(!Files.exists(rutaDirectorioUsuario)) {
             Files.createDirectories(rutaDirectorioUsuario);

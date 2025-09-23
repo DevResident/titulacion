@@ -37,14 +37,13 @@ public class FiltroJWT extends OncePerRequestFilter {
 
             try {
                 String numeroCuenta = jwtUtil.extractNumeroCuenta(jwt);
-                String curp = jwtUtil.extractCurp(jwt);
 
                 if (numeroCuenta != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                     UsernamePasswordAuthenticationToken authToken =
                             new UsernamePasswordAuthenticationToken(
-                                    numeroCuenta, // principal
-                                    null,         // credenciales (no las necesitamos aquí)
-                                    null          // authorities (roles, si tuvieras)
+                                    numeroCuenta, //Principal
+                                    null,         //Credenciales (Innecesarias aqu�)
+                                    null          //Authorities (roles)
                             );
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authToken);

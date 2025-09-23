@@ -18,10 +18,13 @@ public class SeguridadConfig {
 
     private final DetallesUsuarioService usuarioDetallesService;
     private final JwtUtil jwtUtil;
+    private final FiltroJWT filtroJWT;
 
-    public SeguridadConfig(DetallesUsuarioService usuarioDetallesService, JwtUtil jwtUtil) {
+    public SeguridadConfig(DetallesUsuarioService usuarioDetallesService, JwtUtil jwtUtil,
+                           FiltroJWT filtroJWT) {
         this.usuarioDetallesService = usuarioDetallesService;
         this.jwtUtil = jwtUtil;
+        this.filtroJWT = filtroJWT;
     }
 
     @Bean
@@ -44,10 +47,10 @@ public class SeguridadConfig {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "/usuarios/alta-de-usuarios").permitAll()
+                        .requestMatchers("/auth/login", "/usuarios/alta").permitAll()
                         .anyRequest().authenticated()
                 )
-                .addFilterBefore(new FiltroJWT(jwtUtil), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(filtroJWT, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
 

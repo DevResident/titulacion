@@ -1,8 +1,10 @@
 package fca.cifca.titulacion.exceptions;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import java.net.ConnectException;
 
 
 @ControllerAdvice
@@ -27,6 +29,15 @@ public class ManejadorGlobalExcepciones {
     public ResponseEntity<RespuestaError> handleNumeroCuentaInvalido(NumeroCuentaInvalidoException ex) {
 
         return ResponseEntity.badRequest().body( new RespuestaError(ex.getMessage()) );
+
+    }
+
+    @ExceptionHandler(ConnectException.class)
+    public ResponseEntity<String> handleConnectException(ConnectException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("No se pudo conectar con el microservicio: " + ex.getMessage());
 
     }
 

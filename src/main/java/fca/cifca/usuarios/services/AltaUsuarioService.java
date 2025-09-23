@@ -20,9 +20,10 @@ public class AltaUsuarioService implements IAltaUsuariosService{
 
         UsuarioModel nuevoUsuario = new UsuarioModel();
         nuevoUsuario.setUsuario(request.getNumeroCuenta());
-        nuevoUsuario.setContrasenia(passwordEncoder.encode(request.getCurp()));
+        nuevoUsuario.setContrasenia(passwordEncoder.encode(request.getCorreo()));
         nuevoUsuario.setRol("Estudiante");
         nuevoUsuario.setEstatus(Boolean.TRUE);
+
         return usuarioRepository.save(nuevoUsuario);
 
     }

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IAltaUsuariosService {
 
-    public UsuarioModel darAltaUsuario(AltaUsuarioRequest request);
+    UsuarioModel darAltaUsuario(AltaUsuarioRequest request);
 
 }

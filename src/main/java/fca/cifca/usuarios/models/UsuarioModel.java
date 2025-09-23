@@ -19,7 +19,7 @@ public class UsuarioModel {
     @Column(name = "numerocuenta", length = 9, nullable = false, unique = true)
     private String usuario;
 
-    @Column(name = "curp", length = 18, nullable = false)
+    @Column(name = "correo", nullable = false)
     private String contrasenia;
 
     @Column(name = "rol", length = 30, nullable = false)

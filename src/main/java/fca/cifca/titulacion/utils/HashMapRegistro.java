@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+@Deprecated
 public class HashMapRegistro {
 
     private Map<String, RegistroDTO> registros = new HashMap<>();

@@ -14,35 +14,35 @@ public class JwtUtil {
             "ThoughtsKeepDriftingAsWallsKeepShiftingAndThisGreatBlueWorldOfOursSeems" +
             "AHouseOfLeavesMomentsBeforeTheWind";
 
-    public String generarToken(String numeroCuenta, String curp){
+    public String generarToken(String numeroCuenta, String correo){
 
         Map<String, Object> claims = new HashMap<>();
         claims.put("numeroCuenta", numeroCuenta);
-        claims.put("curp", curp);
+        claims.put("correo", correo);
 
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(numeroCuenta)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
-                .signWith(SignatureAlgorithm.HS512, SECRETO)
+                .signWith(SignatureAlgorithm.HS512, SECRETO.getBytes())
                 .compact();
     }
 
     public String extractNumeroCuenta(String token) {
         return Jwts.parser()
-                .setSigningKey(SECRETO)
+                .setSigningKey(SECRETO.getBytes())
                 .parseClaimsJws(token)
                 .getBody()
                 .get("numeroCuenta", String.class);
     }
 
-    public String extractCurp(String token) {
+    public String extractCorreo(String token) {
         return Jwts.parser()
-                .setSigningKey(SECRETO)
+                .setSigningKey(SECRETO.getBytes())
                 .parseClaimsJws(token)
                 .getBody()
-                .get("curp", String.class);
+                .get("correo", String.class);
     }
 
     //Extraer el token.
