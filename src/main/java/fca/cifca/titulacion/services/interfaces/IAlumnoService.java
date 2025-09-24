@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IAlumnoService {
     AlumnoDTO buscarAlumno(String numeroCuenta);
-    RegistroDTO obtenerRegistro(String numeroCuenta);
+    RegistroDTO obtenerRegistro(String numeroCuenta, String curp);
     RegistroModel registrarAlumno(RegistroRequest registro);
     ArchivoDTO generarComprobantePdf(String numeroCuenta);
 }

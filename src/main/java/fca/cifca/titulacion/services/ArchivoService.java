@@ -5,14 +5,11 @@ import fca.cifca.titulacion.models.dtos.AlumnoRequest;
 import fca.cifca.titulacion.services.interfaces.IArchivosService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Objects;
 
 @Service
 public class ArchivoService implements IArchivosService {
@@ -22,11 +19,9 @@ public class ArchivoService implements IArchivosService {
 
     //Recibe los strings desde el controller
     @Override
-    public String guardarArchivo(MultipartFile archivo, String numeroCuenta, TiposDocumento tipo)
+    public String guardarArchivo(MultipartFile archivo, String numeroCuenta, TiposDocumento tipo,
+                                 String nombreDirectorio)
             throws IOException {
-
-        //Crear dinámicamente el nombre del directorio
-        String nombreDirectorio = numeroCuenta;
 
         //Verificar que el path raíz exista
         Path rutaDirectorioUsuario = Paths.get(rutaAlmacenamiento, nombreDirectorio);

@@ -1,6 +1,8 @@
 package fca.cifca.titulacion.controllers;
 
 import fca.cifca.titulacion.enums.TiposDocumento;
+import fca.cifca.titulacion.models.dtos.AlumnoDTO;
+import fca.cifca.titulacion.services.AlumnoServiceDB;
 import fca.cifca.titulacion.services.ArchivoService;
 import fca.cifca.titulacion.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ public class CargaArchivosController {
     @Autowired
     private ArchivoService archivoService;
     @Autowired
+    private AlumnoServiceDB alumnoService;
+    @Autowired
     private JwtUtil jwtUtil;
 
 
@@ -26,7 +30,9 @@ public class CargaArchivosController {
 
             String token = jwtUtil.extractTokenFromHeader(authHeader);
             String numeroCuenta = jwtUtil.extractNumeroCuenta(token);
-            String urlArchivo = archivoService.guardarArchivo(archivo, numeroCuenta, tipo);
+            AlumnoDTO alumnoDTO = alumnoService.buscarAlumno(numeroCuenta);
+            String nombreDirectorio = numeroCuenta + "_" + alumnoDTO.getCurp();
+            String urlArchivo = archivoService.guardarArchivo(archivo, numeroCuenta, tipo, nombreDirectorio);
 
             return ResponseEntity.ok("Archivo guardado en: " + urlArchivo);
 

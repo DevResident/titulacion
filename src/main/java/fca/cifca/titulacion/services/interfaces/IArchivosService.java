@@ -10,7 +10,7 @@ import java.io.IOException;
 @Service
 public interface IArchivosService {
 
-    public String guardarArchivo(MultipartFile archivo, String numeroCuenta, TiposDocumento tipo)
+    String guardarArchivo(MultipartFile archivo, String numeroCuenta, TiposDocumento tipo, String nombreDirectorio)
             throws IOException;
 
 }

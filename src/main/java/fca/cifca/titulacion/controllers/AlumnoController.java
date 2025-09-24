@@ -30,7 +30,9 @@ public class AlumnoController {
 
         //return alumnoService.obtenerRegistro(alumnoRequest);
         String token = jwtUtil.extractTokenFromHeader(authHeader);
-        return alumnoService.obtenerRegistro(jwtUtil.extractNumeroCuenta(token));
+        String numeroCuenta = jwtUtil.extractNumeroCuenta(token);
+        AlumnoDTO alumnoDTO = alumnoService.buscarAlumno(jwtUtil.extractNumeroCuenta(token));
+        return alumnoService.obtenerRegistro(numeroCuenta, alumnoDTO.getCurp());
 
 
     }

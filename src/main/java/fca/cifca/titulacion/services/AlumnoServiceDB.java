@@ -75,24 +75,25 @@ public class AlumnoServiceDB implements IAlumnoService {
     }
 
     @Override
-    public RegistroDTO obtenerRegistro(String numeroCuenta) {
+    public RegistroDTO obtenerRegistro(String numeroCuenta, String curp) {
         return registroRepository
                 .findByNumeroCuenta(numeroCuenta)
                 .map(registro ->
                         new RegistroDTO(registro,
                                 //Dejar foto en min�sculas, si no no lo encuentra
-                                numeroCuenta + "/foto"))
+                                numeroCuenta + "_" + curp + "/foto"))
                 .orElseThrow(() -> new AlumnoNoEncontradoException("No se encontraron registros asociados."));
     }
 
     @Override
     public ArchivoDTO generarComprobantePdf(String numeroCuenta) {
 
-        RegistroDTO dto = obtenerRegistro(numeroCuenta);
-        byte[] pdf = cliente.generarComprobante(dto);
+        AlumnoDTO alumnoDTO = buscarAlumno(numeroCuenta);
+        RegistroDTO registroDto = obtenerRegistro(numeroCuenta, alumnoDTO.getCurp());
+        byte[] pdf = cliente.generarComprobante(registroDto);
 
         // Aquí se crea el nombre dinámico
-        String nombreArchivo = dto.getNumeroCuenta() + "-comprobante-titulacion.pdf";
+        String nombreArchivo = registroDto.getNumeroCuenta() + "_" + alumnoDTO.getCurp() + "-comprobante-titulacion.pdf";
 
         return new ArchivoDTO(nombreArchivo, pdf);
 

@@ -45,6 +45,14 @@ public class JwtUtil {
                 .get("correo", String.class);
     }
 
+    public String extractCurp(String token) {
+        return Jwts.parser()
+                .setSigningKey(SECRETO.getBytes())
+                .parseClaimsJws(token)
+                .getBody()
+                .get("curp", String.class);
+    }
+
     //Extraer el token.
     public String extractTokenFromHeader(String authHeader){
 
