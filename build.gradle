@@ -52,6 +52,9 @@ dependencies {
 
     //Spring security
     implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    //Correo
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 
