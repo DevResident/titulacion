@@ -1,6 +1,7 @@
 package fca.cifca.titulacion.controllers;
 
 import fca.cifca.titulacion.models.dtos.LoginRequest;
+import fca.cifca.titulacion.services.VerificarCorreoService;
 import fca.cifca.titulacion.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,15 +23,25 @@ public class AutenticarController {
 
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
+    private final VerificarCorreoService verificarCorreoService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         try {
+            //Primero validar código
+            boolean valido = verificarCorreoService.verificarCodigo(
+                    request.getContrasenia(), //Correo
+                    request.getCodigo() //Código ingresado por el usuario
+            );
+
+            if (!valido) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Código inválido o expirado");
+            }
+
+            // Luego autenticar usuario
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(request.getUsuario(), request.getContrasenia())
             );
-
-            SecurityContextHolder.getContext().setAuthentication(authentication);
 
             String token = jwtUtil.generarToken(
                     request.getUsuario(),
@@ -42,4 +54,13 @@ public class AutenticarController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
         }
     }
+
+    //Sin protecci�n de security filter chain
+    @PostMapping("/validar_correo")
+    public ResponseEntity<?> solicitarCodigo(@RequestBody Map<String, String> request) {
+        String correo = request.get("correo");
+        verificarCorreoService.enviarCodigo(correo);
+        return ResponseEntity.ok("Código enviado a " + correo);
+    }
+
 }

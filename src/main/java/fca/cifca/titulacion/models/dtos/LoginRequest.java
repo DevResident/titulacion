@@ -11,5 +11,6 @@ public class LoginRequest {
 
     private String usuario;
     private String contrasenia;
+    private String codigo;
 
 }
