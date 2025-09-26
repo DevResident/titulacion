@@ -11,5 +11,6 @@ public class AltaUsuarioRequest {
 
     private String numeroCuenta;
     private String correo;
+    private String codigo;
 
 }

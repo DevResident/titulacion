@@ -47,7 +47,10 @@ public class SeguridadConfig {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "/usuarios/alta", "auth/validar_codigo").permitAll()
+                        .requestMatchers("/auth/login",
+                                "/usuarios/alta",
+                                "auth/validar_correo",
+                                "usuarios/solicitar-codigo").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(filtroJWT, UsernamePasswordAuthenticationFilter.class);

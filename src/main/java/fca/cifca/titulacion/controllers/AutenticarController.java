@@ -28,16 +28,6 @@ public class AutenticarController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         try {
-            //Primero validar código
-            boolean valido = verificarCorreoService.verificarCodigo(
-                    request.getContrasenia(), //Correo
-                    request.getCodigo() //Código ingresado por el usuario
-            );
-
-            if (!valido) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Código inválido o expirado");
-            }
-
             // Luego autenticar usuario
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(request.getUsuario(), request.getContrasenia())
