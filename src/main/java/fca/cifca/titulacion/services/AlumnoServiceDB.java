@@ -9,6 +9,7 @@ import fca.cifca.titulacion.repositories.*;
 import fca.cifca.titulacion.services.clients.ClientePDF;
 import fca.cifca.titulacion.services.interfaces.IAlumnoService;
 import fca.cifca.titulacion.enums.ERegex;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,11 @@ public class AlumnoServiceDB implements IAlumnoService {
     private final ConvocatoriaRepository convocatoriaRepository;
     private final OrientacionRepository orientacionRepository;
     private final AreaConocimientoRepository areaConocimientoRepository;
+
+    //5ta vez que intento arreglar la ruta.
+    @Value("${storage.path}")
+    private String rutaBase;
+
 
     //Cliente PDF.
     public final ClientePDF cliente;
@@ -76,12 +82,14 @@ public class AlumnoServiceDB implements IAlumnoService {
 
     @Override
     public RegistroDTO obtenerRegistro(String numeroCuenta, String curp) {
+
+        //Dejar foto en min�sculas, si no no lo encuentra
+        String pathRelativo = "/" + numeroCuenta + "_" + curp + "/foto";
+
         return registroRepository
                 .findByNumeroCuenta(numeroCuenta)
                 .map(registro ->
-                        new RegistroDTO(registro,
-                                //Dejar foto en min�sculas, si no no lo encuentra
-                                numeroCuenta + "_" + curp + "/foto"))
+                        new RegistroDTO(registro, rutaBase, pathRelativo))
                 .orElseThrow(() -> new AlumnoNoEncontradoException("No se encontraron registros asociados."));
     }
 
@@ -92,7 +100,7 @@ public class AlumnoServiceDB implements IAlumnoService {
         RegistroDTO registroDto = obtenerRegistro(numeroCuenta, alumnoDTO.getCurp());
         byte[] pdf = cliente.generarComprobante(registroDto);
 
-        // Aquí se crea el nombre dinámico
+        // Aquí se crea el nombre dinámico del pdf
         String nombreArchivo = registroDto.getNumeroCuenta() + "_" + alumnoDTO.getCurp() + "-comprobante-titulacion.pdf";
 
         return new ArchivoDTO(nombreArchivo, pdf);

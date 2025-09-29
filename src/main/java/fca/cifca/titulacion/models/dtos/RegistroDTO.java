@@ -53,7 +53,7 @@ public class RegistroDTO {
     @NotNull
     private String urlFotografia;
     //Constructor a base del modelo.
-    public RegistroDTO(RegistroModel registro, String nombreFotografia) {
+    public RegistroDTO(RegistroModel registro, String urlFotografia, String nombreFotografia) {
 
         this.numeroCuenta = registro.getAlumno().getNumeroCuenta();
         this.nombre = registro.getAlumno().getIdPersona().getPers_nombre();
@@ -73,7 +73,7 @@ public class RegistroDTO {
             return;
         }
 
-        this.urlFotografia = "/home/crimsonking/uploads/files/" + nombreFotografia;
+        this.urlFotografia = urlFotografia + nombreFotografia; //"/home/crimsonking/uploads/files/" + nombreFotografia;
 
     }
 
