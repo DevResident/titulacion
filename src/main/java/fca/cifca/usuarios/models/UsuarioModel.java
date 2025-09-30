@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuario")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,19 +13,20 @@ import lombok.*;
 public class UsuarioModel {
 
     @Id
+    @Column(name = "usua_id_usuario")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idusuario;
 
-    @Column(name = "numerocuenta", length = 9, nullable = false, unique = true)
+    @Column(name = "usua_numero_cuenta", length = 9, nullable = false, unique = true)
     private String usuario;
 
-    @Column(name = "correo", nullable = false)
+    @Column(name = "usua_correo", nullable = false)
     private String contrasenia;
 
-    @Column(name = "rol", length = 30, nullable = false)
+    @Column(name = "usua_rol", length = 30, nullable = false)
     private String rol;
 
-    @Column(name = "estatus", nullable = false)
+    @Column(name = "usua_estatus", nullable = false)
     private Boolean estatus;
 
 
