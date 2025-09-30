@@ -1,4 +1,4 @@
-CREATE DATABASE usuarios;
+CREATE DATABASE bdusuario;
 
 CREATE TABLE IF NOT EXISTS usuario(
 
