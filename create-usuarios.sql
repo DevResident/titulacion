@@ -1,6 +1,6 @@
 CREATE DATABASE usuarios;
 
-CREATE TABLE IF NOT EXISTS usuarios(
+CREATE TABLE IF NOT EXISTS usuario(
 
 	usua_id_usuario SERIAL PRIMARY KEY,
 	usua_numero_cuenta VARCHAR(9) UNIQUE NOT NULL,
