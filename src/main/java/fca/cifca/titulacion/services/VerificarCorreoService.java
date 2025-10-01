@@ -35,12 +35,12 @@ public class VerificarCorreoService {
 
         correoService.mandarCorreo(new CorreoRequest(
                 correo,
-                "C骴igo de verificaci髇",
-                "Tu c骴igo de verificaci髇 es: " + codigo + ". Expira en 5 minutos."
+                "C贸digo de verificaci贸n",
+                "Tu c贸digo de verificaci贸n es: " + codigo + ". Expira en 5 minutos."
         ));
 
         Logger log =  Logger.getLogger(VerificarCorreoService.class.getName());
-        log.info("C骴igo enviado: " + codigo);
+        log.info("C贸digo enviado: " + codigo);
 
     }
 
