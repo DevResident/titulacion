@@ -21,12 +21,12 @@ public class UsuariosController {
     private final AltaUsuarioService altaUsuarioService;
     private final VerificarCorreoService verificarCorreoService;
 
-    //Paso 1, solicitar código de verificación
+    //Paso 1, solicitar cï¿½digo de verificaciï¿½n
     @PostMapping("/solicitar-codigo")
     public ResponseEntity<String> solicitarCodigo(@RequestBody Map<String, String> request) {
         String correo = request.get("correo");
         verificarCorreoService.enviarCodigo(correo);
-        return ResponseEntity.ok("Código enviado a " + correo);
+        return ResponseEntity.ok("CÃ³digo enviado a " + correo);
     }
 
     //Paso 2, el alta. Rutear redirecci?n desde ./solicitar_codigo
@@ -40,7 +40,7 @@ public class UsuariosController {
 
         if (!valido) {
 
-            return ResponseEntity.badRequest().body("Código inválido o expirado");
+            return ResponseEntity.badRequest().body("CÃ³digo invÃ¡lido o expirado");
         }
 
         UsuarioModel nuevoUsuario = altaUsuarioService.darAltaUsuario(altaUsuarioRequest);
