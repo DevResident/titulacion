@@ -28,17 +28,24 @@ public class ArchivoService implements IArchivosService {
         if(!Files.exists(rutaDirectorioUsuario)) {
             Files.createDirectories(rutaDirectorioUsuario);
         }
-        //Construir la ruta completa
-        Path rutaArchivo = rutaDirectorioUsuario.resolve(tipo.getDescripcion()).normalize();
         if(tipo == TiposDocumento.FOTO && !archivo.getOriginalFilename().split("\\.")[1].equals("jpg")){
             throw new IOException("El archivo debe ser JPG");
         }
         if(!(tipo == TiposDocumento.FOTO) && !archivo.getOriginalFilename().split("\\.")[1].equals("pdf")){
             throw new IOException("El archivo debe ser PDF");
         }
+
+        //Crear el nombre con el n�mero de cuenta
+        String nombreArchivo = numeroCuenta + "_" + tipo.getDescripcion();
+
+        //Ruta completa.
+        Path rutaArchivo = rutaDirectorioUsuario.resolve(nombreArchivo).normalize();
+
         //Guardamos
         Files.write(rutaArchivo, archivo.getBytes());
+
         //Regreasar la ruta
-        return nombreDirectorio + "/" + tipo;
+        return rutaAlmacenamiento + "/" + nombreDirectorio + "/" + nombreArchivo;
     }
+
 }
