@@ -84,7 +84,7 @@ public class AlumnoServiceDB implements IAlumnoService {
     public RegistroDTO obtenerRegistro(String numeroCuenta, String curp) {
 
         //Dejar foto en min�sculas, si no no lo encuentra
-        String pathRelativo = "/" + numeroCuenta + "_" + curp + "foto";
+        String pathRelativo = "/" + numeroCuenta + "_" + curp + "/" + numeroCuenta + "_foto";
 
         return registroRepository
                 .findByNumeroCuenta(numeroCuenta)
