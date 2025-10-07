@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class AltaUsuarioService implements IAltaUsuariosService{
@@ -17,7 +19,10 @@ public class AltaUsuarioService implements IAltaUsuariosService{
 
     @Override
     public UsuarioModel darAltaUsuario(AltaUsuarioRequest request) {
-
+        Optional<UsuarioModel> usuario = usuarioRepository.findByUsuario(request.getNumeroCuenta());
+        if(usuario.isPresent()) {
+            return usuario.get();
+        }
         UsuarioModel nuevoUsuario = new UsuarioModel();
         nuevoUsuario.setUsuario(request.getNumeroCuenta());
         nuevoUsuario.setContrasenia(passwordEncoder.encode(request.getCorreo()));

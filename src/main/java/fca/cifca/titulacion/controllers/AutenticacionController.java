@@ -10,16 +10,14 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
-import java.util.logging.Logger;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/auth")
-public class AutenticarController {
+public class AutenticacionController {
 
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;

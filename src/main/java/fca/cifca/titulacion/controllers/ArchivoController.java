@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/carga")
-public class CargaArchivosController {
+public class ArchivoController {
 
     @Autowired
     private ArchivoService archivoService;

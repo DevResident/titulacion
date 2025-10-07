@@ -3,6 +3,7 @@ package fca.cifca.titulacion.services;
 import fca.cifca.titulacion.models.dtos.CodigoDTO;
 import fca.cifca.titulacion.models.dtos.CorreoRequest;
 import fca.cifca.titulacion.utils.CodigoUtil;
+import fca.cifca.usuarios.models.dtos.AltaUsuarioRequest;
 import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -45,14 +46,14 @@ public class VerificarCorreoService {
     }
 
 
-    public boolean verificarCodigo(String correo, String codigoIngresado) {
-        CodigoDTO info = codigosPendientes.get(correo);
+    public boolean verificarCodigo(AltaUsuarioRequest altaUsuarioRequest) {
+        CodigoDTO info = codigosPendientes.get(altaUsuarioRequest.getCorreo());
         if (info == null) return false;
 
         // Comparar usando LocalDateTime
         if (LocalDateTime.now().isAfter(info.getExpiracion())) return false;
 
-        return info.getCodigo().equals(codigoIngresado);
+        return info.getCodigo().equals(altaUsuarioRequest.getCodigo());
     }
 
 }
