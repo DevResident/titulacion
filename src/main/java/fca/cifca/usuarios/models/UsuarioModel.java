@@ -26,8 +26,7 @@ public class UsuarioModel {
     @Column(name = "usua_rol", length = 30, nullable = false)
     private String rol;
 
-    @Column(name = "usua_estatus", nullable = false)
-    private Boolean estatus;
-
+    @Column(name = "usua_activo", nullable = false)
+    private Boolean activo;
 
 }
