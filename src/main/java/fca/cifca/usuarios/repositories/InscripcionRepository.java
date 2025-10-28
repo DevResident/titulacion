@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface InscripcionRepository extends JpaRepository<Integer, InscripcionModel> {
+public interface InscripcionRepository extends JpaRepository<InscripcionModel, Integer> {
     Optional<InscripcionModel> getAllByPeriodo(String periodo);
 }
