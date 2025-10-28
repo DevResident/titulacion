@@ -20,6 +20,7 @@ public class AltaUsuarioService implements IAltaUsuariosService{
     @Override
     public UsuarioModel darAltaUsuario(AltaUsuarioRequest request) {
         Optional<UsuarioModel> usuario = usuarioRepository.findByUsuario(request.getNumeroCuenta());
+
         if(usuario.isPresent()) {
             return usuario.get();
         }
@@ -27,7 +28,7 @@ public class AltaUsuarioService implements IAltaUsuariosService{
         nuevoUsuario.setUsuario(request.getNumeroCuenta());
         nuevoUsuario.setContrasenia(passwordEncoder.encode(request.getCorreo()));
         nuevoUsuario.setRol("Estudiante");
-        nuevoUsuario.setEstatus(Boolean.TRUE);
+        nuevoUsuario.setActivo(Boolean.TRUE);
 
         return usuarioRepository.save(nuevoUsuario);
 
