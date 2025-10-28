@@ -19,7 +19,7 @@ public class InscripcionModel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "insc_id_usuario", nullable = false)
-    private UsuarioModel inscripcion;
+    private UsuarioModel usuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "insc_id_estatus", nullable = false)
