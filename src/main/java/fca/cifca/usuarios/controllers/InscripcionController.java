@@ -5,23 +5,19 @@ import fca.cifca.usuarios.models.dtos.InscripcionDTO;
 import fca.cifca.usuarios.services.UsuarioEstatusService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/inscripciones")
 @RequiredArgsConstructor
 public class InscripcionController {
 
-    @Autowired
     private final UsuarioEstatusService usuarioEstatusService;
 
     @PostMapping("/estatus")
-    public List<UsuarioModel> buscarUsuarioEstatus(@RequestParam InscripcionDTO inscripcionDTO) {
+    public List<UsuarioModel> buscarUsuarioEstatus(@RequestBody InscripcionDTO inscripcionDTO) {
         return usuarioEstatusService.buscarUsuarioEstatus(inscripcionDTO);
     }
 
