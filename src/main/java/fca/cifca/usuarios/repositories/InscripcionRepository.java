@@ -10,7 +10,9 @@ import java.util.Optional;
 
 @Repository
 public interface InscripcionRepository extends JpaRepository<InscripcionModel, Integer> {
-    Optional<InscripcionModel> getAllByPeriodo(String periodo);
 
+    //Completamente válido y me niego a aceptar que no lo es.
+    Optional<List<InscripcionModel>> getAllByPeriodo(String periodo);
     List<InscripcionModel> findByEstatus(EstatusModel estatus);
+
 }
