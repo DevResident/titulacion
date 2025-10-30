@@ -45,12 +45,15 @@ public class SeguridadConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
+        //Nota mental, siempre que cambie un endpoint (como usuarios a usuario REFLEJAR LO ANTES POSIBLE
+        // EL CAMBIO AQUÍ, si no la cadena deja de funcionar.
+
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login",
-                                "/usuarios/alta",
+                                "/usuario/alta",
                                 "auth/validar_correo",
-                                "usuarios/solicitar-codigo").permitAll()
+                                "usuario/solicitar-codigo").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(filtroJWT, UsernamePasswordAuthenticationFilter.class);
