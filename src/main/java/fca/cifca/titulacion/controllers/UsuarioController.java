@@ -1,5 +1,6 @@
 package fca.cifca.titulacion.controllers;
 
+import fca.cifca.titulacion.models.dtos.SolicitarCodigoDTO;
 import fca.cifca.titulacion.services.VerificarCorreoService;
 import fca.cifca.usuarios.models.UsuarioModel;
 import fca.cifca.usuarios.models.dtos.AltaUsuarioRequest;
@@ -23,9 +24,10 @@ public class UsuarioController {
 
     //Paso 1, solicitar c�digo de verificaci�n
     @PostMapping("/solicitar-codigo")
-    public ResponseEntity<String> solicitarCodigo(@RequestBody String correo) {
-        verificarCorreoService.enviarCodigo(correo);
-        return ResponseEntity.ok("Código enviado a " + correo);
+    public ResponseEntity<String> solicitarCodigo(@RequestBody SolicitarCodigoDTO correo) {
+        //Trim para limpiarlo.
+        verificarCorreoService.enviarCodigo(correo.getCorreo().trim());
+        return ResponseEntity.ok("Código enviado a " + correo.getCorreo().trim());
     }
 
     //Paso 2, el alta. Rutear redirecci?n desde ./solicitar_codigo
