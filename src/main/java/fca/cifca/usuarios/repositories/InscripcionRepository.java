@@ -11,8 +11,7 @@ import java.util.Optional;
 @Repository
 public interface InscripcionRepository extends JpaRepository<InscripcionModel, Integer> {
 
-    //Completamente válido y me niego a aceptar que no lo es.
-    Optional<List<InscripcionModel>> getAllByPeriodo(String periodo);
+    List<InscripcionModel>findAllByPeriodo(String periodo);
     List<InscripcionModel> findByEstatus(EstatusModel estatus);
 
 }
