@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class InscripcionDTO {
 
-    private String estatus;
+    private Integer idInscripcion;
+    private Integer idUsuario;
+    private Integer idEstatus;
     private String periodo;
+
 }
