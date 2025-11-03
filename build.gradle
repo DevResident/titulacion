@@ -44,6 +44,9 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
     runtimeOnly 'com.h2database:h2:2.3.232'
 
+    // No sé qué hace esta pero es necesaria
+    implementation 'org.jboss.logging:jboss-logging:3.5.2.Final'
+
     //Dependencias de compilacion
     compileOnly 'org.projectlombok:lombok:1.18.34'
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
