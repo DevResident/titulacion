@@ -1,7 +1,6 @@
 package fca.cifca.usuarios.services;
 
 import fca.cifca.usuarios.models.InscripcionModel;
-import fca.cifca.usuarios.models.dtos.InscripcionDTO;
 import fca.cifca.usuarios.repositories.InscripcionRepository;
 import fca.cifca.usuarios.services.interfaces.IInscripcionService;
 import lombok.RequiredArgsConstructor;
