@@ -9,6 +9,8 @@ import fca.cifca.titulacion.repositories.*;
 import fca.cifca.titulacion.services.clients.ClientePDF;
 import fca.cifca.titulacion.services.interfaces.IAlumnoService;
 import fca.cifca.titulacion.enums.ERegex;
+import fca.cifca.usuarios.repositories.InscripcionRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
+@RequiredArgsConstructor
 public class AlumnoServiceDB implements IAlumnoService {
 
     //Repositorios para acceder a los datos.
@@ -26,29 +29,15 @@ public class AlumnoServiceDB implements IAlumnoService {
     private final ConvocatoriaRepository convocatoriaRepository;
     private final OrientacionRepository orientacionRepository;
     private final AreaConocimientoRepository areaConocimientoRepository;
+    //Repositorio donde se llena la inscripción en la BD.
+    private final InscripcionRepository inscripcionRepository;
 
     //5ta vez que intento arreglar la ruta.
     @Value("${storage.path}")
     private String rutaBase;
 
-
     //Cliente PDF.
     public final ClientePDF cliente;
-
-    //Inyectar dependencia mediante constructor.
-    public AlumnoServiceDB(AlumnoRepository alumnoRepository, RegistroRepository registroRepository,
-                           ModalidadRepository modalidadRepository, OpcionRepository opcionRepository,
-                           ConvocatoriaRepository convocatoriaRepository, OrientacionRepository orientacionRepository,
-                           AreaConocimientoRepository areaConocimientoRepository, ClientePDF cliente) {
-        this.alumnoRepository = alumnoRepository;
-        this.registroRepository = registroRepository;
-        this.modalidadRepository = modalidadRepository;
-        this.opcionRepository = opcionRepository;
-        this.convocatoriaRepository = convocatoriaRepository;
-        this.orientacionRepository = orientacionRepository;
-        this.areaConocimientoRepository = areaConocimientoRepository;
-        this.cliente = cliente;
-    }
 
     @Override
     public AlumnoDTO buscarAlumno(String numeroCuenta) {
@@ -61,13 +50,6 @@ public class AlumnoServiceDB implements IAlumnoService {
                 throw new NumeroCuentaInvalidoException("El número de cuenta no cumple el formato esperado");
 
             }
-
-            //Validar formato de CURP.
-          /*  if (!curp.matches(ERegex.CURP.getPatron()) || curp.length() != 18) {
-
-                throw new CurpInvalidaException("La CURP no cumple con el formato esperado");
-
-            }*/
 
             return alumnoRepository.findByNumeroCuenta(numeroCuenta)
                     .map(AlumnoDTO::new)
