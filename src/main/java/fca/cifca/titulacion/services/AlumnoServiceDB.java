@@ -9,13 +9,17 @@ import fca.cifca.titulacion.repositories.*;
 import fca.cifca.titulacion.services.clients.ClientePDF;
 import fca.cifca.titulacion.services.interfaces.IAlumnoService;
 import fca.cifca.titulacion.enums.ERegex;
+import fca.cifca.usuarios.models.UsuarioModel;
+import fca.cifca.usuarios.models.dtos.InscripcionDTO;
 import fca.cifca.usuarios.repositories.InscripcionRepository;
+import fca.cifca.usuarios.repositories.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +33,8 @@ public class AlumnoServiceDB implements IAlumnoService {
     private final ConvocatoriaRepository convocatoriaRepository;
     private final OrientacionRepository orientacionRepository;
     private final AreaConocimientoRepository areaConocimientoRepository;
+    //Repositorio para los alumnos en la bd complementaria.
+    private final UsuarioRepository usuarioRepository;
     //Repositorio donde se llena la inscripción en la BD.
     private final InscripcionRepository inscripcionRepository;
 
@@ -94,6 +100,9 @@ public class AlumnoServiceDB implements IAlumnoService {
 
         RegistroModel registro = new RegistroModel();
 
+        //Esto se usa casi al final.
+        InscripcionDTO inscripcion = new InscripcionDTO();
+
         //Aquí se hace el enlace entre las entidades.
         AlumnoModel alumno = alumnoRepository.findById(request.getIdAlumno())
                 .orElseThrow(() -> new AlumnoNoEncontradoException("Alumno no encontrado"));
@@ -120,7 +129,6 @@ public class AlumnoServiceDB implements IAlumnoService {
         registro.setConvocatoriaTitulacion(convocatoria);
         registro.setOrientacion(orientacion);
         registro.setAreaConocimiento(area);
-
         registro.setFechaRegistro(LocalDateTime.now());
         registro.setComentario(request.getComentario());
         registro.setEstatus("I");
@@ -135,6 +143,14 @@ public class AlumnoServiceDB implements IAlumnoService {
         registro.setFolio(request.getFolio());
 
         registroRepository.save(registro);
+
+        //Esto es una mala idea, pero es la forma más sencilla del manejo de inscripción.
+        //Este meollo esto para extraer el ID del usuario y ponerlo en las inscripciones.
+        Optional<UsuarioModel> usuarioModel = usuarioRepository.findByNumeroCuenta(alumno.getNumeroCuenta());
+        inscripcion.setIdUsuario(usuarioModel.get().getIdusuario());
+        //Defaultear estatus a PENDIENTE (id 2).
+        inscripcion.setIdEstatus(2);
+        //TBD el manejo de la fecha.
 
         return registro;
     }
