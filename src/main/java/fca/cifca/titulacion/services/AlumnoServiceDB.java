@@ -21,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -101,6 +102,7 @@ public class AlumnoServiceDB implements IAlumnoService {
     }
 
     @Override
+    @Transactional //Para evitar que se hagan transacciones mal formadas.
     public RegistroModel registrarAlumno(RegistroRequest request) {
 
         CreadorPeriodo creadorPeriodo = new CreadorPeriodo();
