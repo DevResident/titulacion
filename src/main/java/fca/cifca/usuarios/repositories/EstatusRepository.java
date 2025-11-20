@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface EstatusRepository extends JpaRepository<EstatusModel, Integer>{
     Optional<EstatusModel> findByEstatus(String estatus);
+    Optional<EstatusModel> findById(Integer id);
 }

@@ -9,8 +9,12 @@ import fca.cifca.titulacion.repositories.*;
 import fca.cifca.titulacion.services.clients.ClientePDF;
 import fca.cifca.titulacion.services.interfaces.IAlumnoService;
 import fca.cifca.titulacion.enums.ERegex;
+import fca.cifca.titulacion.utils.CreadorPeriodo;
+import fca.cifca.usuarios.models.EstatusModel;
+import fca.cifca.usuarios.models.InscripcionModel;
 import fca.cifca.usuarios.models.UsuarioModel;
 import fca.cifca.usuarios.models.dtos.InscripcionDTO;
+import fca.cifca.usuarios.repositories.EstatusRepository;
 import fca.cifca.usuarios.repositories.InscripcionRepository;
 import fca.cifca.usuarios.repositories.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +41,7 @@ public class AlumnoServiceDB implements IAlumnoService {
     private final UsuarioRepository usuarioRepository;
     //Repositorio donde se llena la inscripción en la BD.
     private final InscripcionRepository inscripcionRepository;
+    private final EstatusRepository estatusRepository;
 
     //5ta vez que intento arreglar la ruta.
     @Value("${storage.path}")
@@ -98,10 +103,12 @@ public class AlumnoServiceDB implements IAlumnoService {
     @Override
     public RegistroModel registrarAlumno(RegistroRequest request) {
 
+        CreadorPeriodo creadorPeriodo = new CreadorPeriodo();
+
         RegistroModel registro = new RegistroModel();
 
         //Esto se usa casi al final.
-        InscripcionDTO inscripcion = new InscripcionDTO();
+        InscripcionModel inscripcion = new InscripcionModel();
 
         //Aquí se hace el enlace entre las entidades.
         AlumnoModel alumno = alumnoRepository.findById(request.getIdAlumno())
@@ -146,13 +153,17 @@ public class AlumnoServiceDB implements IAlumnoService {
 
         //Esto es una mala idea, pero es la forma más sencilla del manejo de inscripción.
         //Este meollo esto para extraer el ID del usuario y ponerlo en las inscripciones.
-        Optional<UsuarioModel> usuarioModel = usuarioRepository.findByNumeroCuenta(alumno.getNumeroCuenta());
-        inscripcion.setIdUsuario(usuarioModel.get().getIdusuario());
-        //Defaultear estatus a PENDIENTE (id 2).
-        inscripcion.setIdEstatus(2);
-        //TBD el manejo de la fecha.
+        UsuarioModel usuario = usuarioRepository.findByNumeroCuenta(alumno.getNumeroCuenta())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        EstatusModel estatus = estatusRepository.findByEstatus("PENDIENTE")
+                .orElseThrow(() -> new RuntimeException("Estatus no encontrado"));
+        inscripcion.setUsuario(usuario);
+        inscripcion.setEstatus(estatus);
+        inscripcion.setPeriodo(creadorPeriodo.crearPeriodo());
+        inscripcionRepository.save(inscripcion);
 
         return registro;
+
     }
 
 }
