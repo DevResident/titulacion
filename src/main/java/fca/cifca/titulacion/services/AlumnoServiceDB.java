@@ -155,7 +155,7 @@ public class AlumnoServiceDB implements IAlumnoService {
 
         //Esto es una mala idea, pero es la forma más sencilla del manejo de inscripción.
         //Este meollo esto para extraer el ID del usuario y ponerlo en las inscripciones.
-        UsuarioModel usuario = usuarioRepository.findByNumeroCuenta(alumno.getNumeroCuenta())
+        UsuarioModel usuario = usuarioRepository.findByUsuario(alumno.getNumeroCuenta())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         EstatusModel estatus = estatusRepository.findByEstatus("PENDIENTE")
                 .orElseThrow(() -> new RuntimeException("Estatus no encontrado"));
