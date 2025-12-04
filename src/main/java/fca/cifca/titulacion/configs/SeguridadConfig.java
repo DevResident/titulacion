@@ -46,7 +46,7 @@ public class SeguridadConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         //Nota mental, siempre que cambie un endpoint (como usuarios a usuario REFLEJAR LO ANTES POSIBLE
-        // EL CAMBIO AQUÍ, si no la cadena deja de funcionar.
+        // EL CAMBIO AQUI, si no la cadena deja de funcionar.
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
