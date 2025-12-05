@@ -44,7 +44,7 @@ public class AutenticacionController {
     }
 
     //Sin protecci�n de security filter chain
-    @PostMapping("/validar_correo")
+    @PostMapping("/validar-correo")
     public ResponseEntity<?> solicitarCodigo(@RequestBody Map<String, String> request) {
         String correo = request.get("correo");
         verificarCorreoService.enviarCodigo(correo);

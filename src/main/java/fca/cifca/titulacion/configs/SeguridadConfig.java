@@ -52,7 +52,7 @@ public class SeguridadConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login",
                                 "/usuario/alta",
-                                "auth/validar_correo",
+                                "auth/validar-correo",
                                 "usuario/solicitar-codigo").permitAll()
                         .anyRequest().authenticated()
                 )
