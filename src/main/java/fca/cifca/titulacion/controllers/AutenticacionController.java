@@ -28,12 +28,12 @@ public class AutenticacionController {
         try {
             // Luego autenticar usuario
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(request.getUsuario(), request.getContrasenia())
+                    new UsernamePasswordAuthenticationToken(request.getUsuario(), request.getCorreo())
             );
 
             String token = jwtUtil.generarToken(
                     request.getUsuario(),
-                    request.getContrasenia()
+                    request.getCorreo()
             );
 
             return ResponseEntity.ok(Map.of("token", token));
