@@ -1,10 +1,13 @@
 package fca.cifca.titulacion.controllers;
 
+import fca.cifca.titulacion.models.RegistroModel;
 import fca.cifca.titulacion.models.dtos.AlumnoDTO;
 import fca.cifca.titulacion.models.dtos.RegistroDTO;
 import fca.cifca.titulacion.models.dtos.RegistroRequest;
+import fca.cifca.titulacion.models.dtos.RegistroResponse;
 import fca.cifca.titulacion.services.AlumnoServiceDB;
 import fca.cifca.titulacion.utils.JwtUtil;
+import fca.cifca.titulacion.utils.RegistroMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +44,11 @@ public class AlumnoController {
     @PostMapping("registro/nuevo")
     public ResponseEntity<?> registrarAlumno(@RequestBody RegistroRequest registroRequest) {
 
-        return ResponseEntity.ok(alumnoService.registrarAlumno(registroRequest));
+        //DTO para no seriliazar.
+        RegistroMapper mapper = new RegistroMapper();
+        RegistroModel registroModel = alumnoService.registrarAlumno(registroRequest);
+        RegistroResponse dto = mapper.toDto(registroModel);
+        return ResponseEntity.ok(dto);
 
     }
 
