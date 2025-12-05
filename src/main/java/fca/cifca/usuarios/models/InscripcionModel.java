@@ -26,7 +26,7 @@ public class InscripcionModel {
     private EstatusModel estatus;
 
     //Deben seguir un formato "xxxx-x", como 2026-1
-    @Column(name = "insc_periodo", nullable = false, length = 6, unique = true)
+    @Column(name = "insc_periodo", nullable = false, length = 6)
     private String periodo;
 
 }
