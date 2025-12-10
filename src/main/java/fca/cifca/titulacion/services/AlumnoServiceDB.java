@@ -3,6 +3,7 @@ package fca.cifca.titulacion.services;
 import fca.cifca.titulacion.exceptions.AlumnoNoEncontradoException;
 import fca.cifca.titulacion.exceptions.BaseDatosNoDisponibleException;
 import fca.cifca.titulacion.exceptions.NumeroCuentaInvalidoException;
+import fca.cifca.titulacion.exceptions.RegistroExistenteException;
 import fca.cifca.titulacion.models.*;
 import fca.cifca.titulacion.models.dtos.*;
 import fca.cifca.titulacion.repositories.*;
@@ -24,7 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -106,9 +107,7 @@ public class AlumnoServiceDB implements IAlumnoService {
     public RegistroModel registrarAlumno(RegistroRequest request) {
 
         CreadorPeriodo creadorPeriodo = new CreadorPeriodo();
-
         RegistroModel registro = new RegistroModel();
-
         //Esto se usa casi al final.
         InscripcionModel inscripcion = new InscripcionModel();
 
@@ -131,7 +130,7 @@ public class AlumnoServiceDB implements IAlumnoService {
         AreaConocimientoModel area = areaConocimientoRepository.findById(request.getIdAreaConocimiento())
                 .orElse(null);
 
-        //Posiblemente mover esto a un mapper.
+        //Posiblemente mover esto a un mapper. Settear cada atributo.
         registro.setAlumno(alumno);
         registro.setModalidadTitulacion(modalidad);
         registro.setOpcionTitulacion(opcion);
@@ -150,6 +149,20 @@ public class AlumnoServiceDB implements IAlumnoService {
         registro.setCalificacion(request.getCalificacion());
         registro.setFecAprobacion(request.getFecAprobacion());
         registro.setFolio(request.getFolio());
+
+        //Sé que el métod0 de búsqueda devuelve una lista
+        //por los casos en que un alumno exista en diferentes modalidades.
+        List<RegistroModel> listaRegistros = registroRepository.
+                findByNumeroCuentaAndIdModalidadTitulacion(
+                alumno.getNumeroCuenta(),
+                modalidad.getIdModalidadTitulacion());
+
+        if(!listaRegistros.isEmpty()) {
+
+            throw new RegistroExistenteException("Registro existente para alumno "
+                    + alumno.getNumeroCuenta() + " en opción de titulación " + modalidad.getNombre());
+
+        }
 
         registroRepository.save(registro);
 
