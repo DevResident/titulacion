@@ -41,4 +41,11 @@ public class ManejadorGlobalExcepciones {
 
     }
 
+    @ExceptionHandler(RegistroExistenteException.class)
+    public ResponseEntity<String> handleRegistroExistente(RegistroExistenteException ex) {
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(ex.getMessage());
+    }
+
 }
