@@ -1,0 +1,34 @@
+package fca.cifca.titulacion.models;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table (name = "orientacion")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class OrientacionModel {
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column (name = "orie_id_orientacion")
+    private Integer orieIdOrientacion;
+
+    @Column (name = "orie_clave_orientacion", nullable = true)
+    private Integer orieClaveOrientacion;
+
+    @Column (name = "orie_nombre", nullable = true, length = 80)
+    private String orieNombre;
+
+    @ManyToOne (fetch = FetchType.EAGER)
+    @JoinColumn (name = "orie_id_grado", nullable = false)
+    private GradoModel grado;
+
+    @ManyToOne (fetch = FetchType.EAGER)
+    @JoinColumn (name = "orie_id_coordinacion", nullable = false)
+    private CoordinacionModel coordinacion;
+
+}
