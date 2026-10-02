@@ -23,7 +23,8 @@ public class ArchivoController {
 
 
     @PostMapping
-    public ResponseEntity<String> cargarArchivo(@RequestParam("archivo")MultipartFile archivo, @RequestParam("tipo") TiposDocumento tipo,
+    public ResponseEntity<String> cargarArchivo(@RequestParam("archivo")MultipartFile archivo,
+                                                @RequestParam("tipo") TiposDocumento tipo,
                                                 @RequestHeader("Authorization") String authHeader){
 
         try{

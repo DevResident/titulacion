@@ -29,7 +29,7 @@ public interface RegistroRepository extends JpaRepository<RegistroModel, Integer
             "WHERE r.alumno.numeroCuenta = :numeroCuenta " +
             "AND r.modalidadTitulacion.idModalidadTitulacion = :idModalidadTitulacion")
     //La lista fuerza a no usar getSingleResult()
-    //Esto de momento se queda así, ID de modalidad 6 (examen) permite varios registros.
+    //Esto de momento se queda asi, ID de modalidad 6 (examen) permite varios registros.
     List<RegistroModel> findByNumeroCuentaAndIdModalidadTitulacion(
             @Param("numeroCuenta") String numeroCuenta,
             @Param("idModalidadTitulacion") Integer idModTitulacion

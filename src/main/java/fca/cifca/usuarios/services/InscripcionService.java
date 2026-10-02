@@ -17,7 +17,7 @@ public class InscripcionService implements IInscripcionService {
     @Override
     public InscripcionModel guardarInscripcion(InscripcionModel inscripcion) {
 
-        //Aquí debe ir la lógica que setee las relaciones de usuario y de estatus junto al periodo.
+        //Aqui debe ir la logica que setee las relaciones de usuario y de estatus junto al periodo.
         return inscripcionRepository.save(inscripcion);
     }
 

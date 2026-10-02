@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IInscripcionService {
 
-    //TBD mover lo de IPeriodoService aquí.
+    //TBD mover lo de IPeriodoService aqui.
 
     InscripcionModel guardarInscripcion(InscripcionModel inscripcion);
 
